@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:gravity="center"
+  android:orientation="vertical">
+
+  <ImageView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:src="@drawable/universal_network_error" />
+
+  <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="12dp"
+    android:text="@string/universal_network_error"
+    android:textColor="@color/color_9C9C9C"
+    android:textSize="@dimen/text_size_14" />
+
+  <TextView
+    android:id="@+id/retry"
+    android:layout_width="160dp"
+    android:layout_height="32dp"
+    android:layout_marginTop="20dp"
+    android:background="@drawable/universal_execute_big_background"
+    android:gravity="center"
+    android:text="@string/universal_refresh"
+    android:textColor="@color/universal_text_color_ffffff"
+    android:textSize="@dimen/text_size_15" />
+</LinearLayout>
