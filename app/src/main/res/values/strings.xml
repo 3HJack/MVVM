@@ -1,3 +1,12 @@
 <resources>
   <string name="app_name">MVVM</string>
+
+  <string name="universal_subscribe">订阅</string>
+  <string name="universal_search">搜索</string>
+  <string name="universal_notice">通知</string>
+  <string name="universal_setting">设置</string>
+
+  <string name="home_shoot_video">拍视频</string>
+  <string name="home_explore">发现</string>
+  <string name="home_live">直播</string>
 </resources>

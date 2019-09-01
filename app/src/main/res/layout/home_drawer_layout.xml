@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:id="@+id/home_drawer"
+  android:layout_width="295dp"
+  android:layout_height="match_parent"
+  android:layout_gravity="right"
+  android:background="@color/color_F8F8F8"
+  android:clickable="true">
+
+  <View
+    android:layout_width="1px"
+    android:layout_height="0dp"
+    android:background="@color/color_EAEAEA"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
+
+  <TextView
+    android:id="@+id/user_name"
+    android:layout_width="154dp"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/drawer_item_left_padding"
+    android:layout_marginTop="60dp"
+    android:ellipsize="end"
+    android:maxLines="2"
+    android:text="One Piece"
+    android:textColor="@color/color_222222"
+    android:textSize="@dimen/text_size_17"
+    android:textStyle="bold"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
+
+  <com.hhh.onepiece.view.NetworkImageView
+    android:id="@+id/user_avatar"
+    android:layout_width="65dp"
+    android:layout_height="65dp"
+    android:layout_marginRight="25dp"
+    app:layout_constraintBottom_toBottomOf="@id/user_name"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toTopOf="@id/user_name"
+    app:placeholderImage="@drawable/universal_avatar_195"
+    app:roundAsCircle="true" />
+
+  <LinearLayout
+    android:id="@+id/shoot_video"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/drawer_item_height"
+    android:layout_marginTop="63dp"
+    android:background="@drawable/universal_item_background"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingLeft="@dimen/drawer_item_left_padding"
+    app:layout_constraintTop_toBottomOf="@id/user_name">
+
+    <ImageView
+      android:id="@+id/shoot_video_icon"
+      android:layout_width="@dimen/drawer_item_icon_size"
+      android:layout_height="@dimen/drawer_item_icon_size"
+      android:src="@drawable/home_drawer_icon_camera_normal" />
+
+    <TextView
+      android:id="@+id/shoot_video_text"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginLeft="@dimen/drawer_item_icon_text_margin"
+      android:text="@string/home_shoot_video"
+      android:textColor="@color/color_222222"
+      android:textSize="@dimen/text_size_16" />
+  </LinearLayout>
+
+  <LinearLayout
+    android:id="@+id/notice"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/drawer_item_height"
+    android:background="@drawable/universal_item_background"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingLeft="@dimen/drawer_item_left_padding"
+    app:layout_constraintTop_toBottomOf="@id/shoot_video">
+
+    <ImageView
+      android:id="@+id/notice_icon"
+      android:layout_width="@dimen/drawer_item_icon_size"
+      android:layout_height="@dimen/drawer_item_icon_size"
+      android:src="@drawable/home_drawer_icon_notification_normal" />
+
+    <TextView
+      android:id="@+id/notice_text"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginLeft="@dimen/drawer_item_icon_text_margin"
+      android:text="@string/universal_notice"
+      android:textColor="@color/color_222222"
+      android:textSize="@dimen/text_size_16" />
+
+    <View
+      android:id="@+id/notice_red_dot"
+      android:layout_width="6dp"
+      android:layout_height="6dp"
+      android:layout_marginLeft="7dp"
+      android:background="@drawable/home_notice_red_dot"
+      android:visibility="invisible" />
+  </LinearLayout>
+
+  <LinearLayout
+    android:id="@+id/setting"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/drawer_item_height"
+    android:background="@drawable/universal_item_background"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingLeft="@dimen/drawer_item_left_padding"
+    app:layout_constraintTop_toBottomOf="@id/notice">
+
+    <ImageView
+      android:id="@+id/setting_text"
+      android:layout_width="@dimen/drawer_item_icon_size"
+      android:layout_height="@dimen/drawer_item_icon_size"
+      android:src="@drawable/home_drawer_icon_setting_normal" />
+
+    <TextView
+      android:id="@+id/setting_icon"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginLeft="@dimen/drawer_item_icon_text_margin"
+      android:text="@string/universal_setting"
+      android:textColor="@color/color_222222"
+      android:textSize="@dimen/text_size_16" />
+  </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:id="@+id/home_content"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
+
+  <include layout="@layout/home_top_bar_layout" />
+
+  <com.google.android.material.tabs.TabLayout
+    android:id="@+id/tab_layout"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/bottom_bar_height"
+    android:background="@color/color_FFFFFF"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:tabIndicatorHeight="0dp"
+    app:tabMode="fixed"
+    app:tabRippleColor="@android:color/transparent" />
+
+  <com.hhh.onepiece.view.CustomScrollViewPager
+    android:id="@+id/view_pager"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    app:layout_constraintBottom_toTopOf="@id/tab_layout"
+    app:layout_constraintTop_toBottomOf="@id/top_bar"
+    app:scrollable="false"
+    app:smooth_scrollable="false" />
+</androidx.constraintlayout.widget.ConstraintLayout>

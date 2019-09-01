@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+  <item android:drawable="@drawable/home_tab_icon_subscribe_selected" android:state_selected="true" />
+  <item>
+    <bitmap android:alpha="@integer/home_tab_icon_state_alpha" android:src="@drawable/home_tab_icon_subscribe_selected" />
+  </item>
+</selector>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:id="@+id/top_bar"
+  android:layout_width="match_parent"
+  android:layout_height="@dimen/top_bar_height"
+  android:paddingLeft="8dp"
+  android:paddingRight="8dp">
+
+  <com.hhh.onepiece.view.NetworkImageView
+    android:id="@+id/top_bar_right"
+    android:layout_width="30dp"
+    android:layout_height="30dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:placeholderImage="@drawable/universal_avatar_90"
+    app:roundAsCircle="true" />
+
+  <LinearLayout
+    android:id="@+id/top_bar_left"
+    android:layout_width="0dp"
+    android:layout_height="33dp"
+    android:layout_marginRight="6dp"
+    android:background="@drawable/universal_input_background"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingLeft="11dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toLeftOf="@id/top_bar_right"
+    app:layout_constraintTop_toTopOf="parent">
+
+    <ImageView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:scaleType="centerInside"
+      android:src="@drawable/universal_icon_search_black" />
+
+    <TextView
+      android:id="@+id/top_bar_center"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginLeft="3dp"
+      android:text="@string/universal_search"
+      android:textColor="@color/color_9C9C9C"
+      android:textSize="@dimen/text_size_13" />
+  </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

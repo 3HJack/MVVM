@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <declare-styleable name="CustomScrollViewPager">
+    <attr name="scrollable" format="boolean" />
+    <attr name="smooth_scrollable" format="boolean" />
+  </declare-styleable>
+</resources>

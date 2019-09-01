@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  <dimen name="top_bar_height">56dp</dimen>
+  <dimen name="bottom_bar_height">56dp</dimen>
+
+  <dimen name="drawer_item_icon_size">22dp</dimen>
+  <dimen name="drawer_item_icon_text_margin">15dp</dimen>
+  <dimen name="drawer_item_height">52dp</dimen>
+  <dimen name="drawer_item_left_padding">32dp</dimen>
+
+</resources>
