@@ -1,6 +1,6 @@
 # MVVM
 
-基于Google MVVM架构和Jetpack组件而设计的一套多Tab、Feed流页面解决方案，下面只是简单
+基于Google MVVM架构和Jetpack组件而设计的一套多Tab、Feed流页面解决方案，整套代码精心设计，下面只是简单
 描述，这套方案的优越性还需要开发者自己去阅读源码以及实践。
 
 ## MVVM的特点
