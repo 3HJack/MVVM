@@ -5,7 +5,7 @@
 
 ## MVVM的特点
 
-- [x] 引入[scwang90/SmartRefreshLayout](https://github.com/scwang90/SmartRefreshLayout)实现下拉刷新，并解决了FootView的问题
+- [x] 引入[scwang90/SmartRefreshLayout](https://github.com/scwang90/SmartRefreshLayout)实现下拉刷新，并解决了HeadView，FootView的问题
 - [x] 采用官方 CoordinatorLayout 实现HeadView
 - [x] 采用官方 DataSource,PagedList,PagedAdapter分页加载框架，支持加载到倒数第X个item时自动加载下一页，天生支持DiffUtil，高性能
 - [x] 对Google 的 Jetpack组件进行了封装，规范了用法，降低了开发者的使用门槛
