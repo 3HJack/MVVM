@@ -6,6 +6,10 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.drawerlayout.widget.DrawerLayout;
+
 import com.google.android.material.tabs.TabLayout;
 import com.hhh.mvvm.base.BaseFragment;
 import com.hhh.mvvm.host.HostFragment;
@@ -14,10 +18,6 @@ import com.hhh.onepiece.R;
 import com.hhh.onepiece.explore.ExploreFragment;
 import com.hhh.onepiece.live.LiveFragment;
 import com.hhh.onepiece.subscribe.SubscribeFragment;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.drawerlayout.widget.DrawerLayout;
 
 public class HomeFragment extends HostFragment {
 

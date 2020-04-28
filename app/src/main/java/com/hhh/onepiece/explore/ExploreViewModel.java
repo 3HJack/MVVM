@@ -1,11 +1,11 @@
 package com.hhh.onepiece.explore;
 
+import androidx.annotation.NonNull;
+
 import com.hhh.mvvm.recycler.DataSourceSnapshot;
 import com.hhh.mvvm.recycler.RecyclerDataSource;
 import com.hhh.mvvm.recycler.RecyclerViewModel;
 import com.hhh.onepiece.model.WorksModel;
-
-import androidx.annotation.NonNull;
 
 public class ExploreViewModel extends RecyclerViewModel<WorksModel, String> {
 

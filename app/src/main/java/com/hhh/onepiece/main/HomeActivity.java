@@ -2,10 +2,10 @@ package com.hhh.onepiece.main;
 
 import android.content.Intent;
 
+import androidx.annotation.NonNull;
+
 import com.hhh.mvvm.base.BaseActivity;
 import com.hhh.mvvm.base.BaseFragment;
-
-import androidx.annotation.NonNull;
 
 public class HomeActivity extends BaseActivity {
 

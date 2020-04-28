@@ -4,13 +4,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
+
 import com.hhh.mvvm.recycler.RecyclerPagedListAdapter;
 import com.hhh.mvvm.recycler.RecyclerViewHolder;
 import com.hhh.onepiece.R;
 import com.hhh.onepiece.model.WorksModel;
-
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.DiffUtil;
 
 public class SubscribePagedAdapter extends RecyclerPagedListAdapter<WorksModel> {
 

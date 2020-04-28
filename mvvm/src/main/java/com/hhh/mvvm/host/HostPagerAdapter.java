@@ -3,12 +3,12 @@ package com.hhh.mvvm.host;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.hhh.mvvm.base.BaseFragment;
-import com.hhh.mvvm.base.BaseUtils;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+
+import com.hhh.mvvm.base.BaseFragment;
+import com.hhh.mvvm.base.BaseUtils;
 
 /**
  * 不支持动态添加和移除fragment

@@ -2,11 +2,11 @@ package com.hhh.onepiece.response;
 
 import java.util.List;
 
+import androidx.annotation.Nullable;
+
 import com.google.gson.annotations.SerializedName;
 import com.hhh.mvvm.recycler.RecyclerResponse;
 import com.hhh.onepiece.model.WorksModel;
-
-import androidx.annotation.Nullable;
 
 public class HomeResponse extends RecyclerResponse<WorksModel> {
 

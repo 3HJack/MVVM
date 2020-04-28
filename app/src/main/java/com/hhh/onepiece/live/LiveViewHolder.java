@@ -3,12 +3,12 @@ package com.hhh.onepiece.live;
 import android.graphics.drawable.ColorDrawable;
 import android.view.View;
 
+import androidx.annotation.NonNull;
+
 import com.hhh.mvvm.recycler.RecyclerViewHolder;
 import com.hhh.onepiece.R;
 import com.hhh.onepiece.model.WorksModel;
 import com.hhh.onepiece.view.NetworkImageView;
-
-import androidx.annotation.NonNull;
 
 public class LiveViewHolder extends RecyclerViewHolder<WorksModel> {
 

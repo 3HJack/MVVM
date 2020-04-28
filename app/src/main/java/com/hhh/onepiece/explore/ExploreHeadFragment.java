@@ -8,6 +8,10 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+import androidx.lifecycle.Observer;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.bigkoo.convenientbanner.holder.Holder;
 import com.bigkoo.convenientbanner.listener.OnPageChangeListener;
@@ -20,10 +24,6 @@ import com.hhh.onepiece.model.WorksModel;
 import com.hhh.onepiece.model.WorksModelGenerator;
 import com.hhh.onepiece.view.BannerView;
 import com.hhh.onepiece.view.NetworkImageView;
-
-import androidx.annotation.Nullable;
-import androidx.lifecycle.Observer;
-import androidx.recyclerview.widget.RecyclerView;
 
 public class ExploreHeadFragment extends BaseFragment {
 

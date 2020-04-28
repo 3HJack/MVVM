@@ -16,13 +16,29 @@ public class LoadingStatus implements Parcelable {
   public static final LoadingStatus STATE_INSERT = new LoadingStatus(Status.INSERT, null);
   public static final LoadingStatus STATE_REMOVE = new LoadingStatus(Status.REMOVE, null);
   public static final LoadingStatus STATE_UPDATE = new LoadingStatus(Status.UPDATE, null);
+  public static final Creator<LoadingStatus> CREATOR = new Creator<LoadingStatus>() {
+    @Override
+    public LoadingStatus createFromParcel(Parcel source) {
+      return new LoadingStatus(source);
+    }
 
+    @Override
+    public LoadingStatus[] newArray(int size) {
+      return new LoadingStatus[size];
+    }
+  };
   public final Status mStatus;
   public final Throwable mThrowable;
 
   public LoadingStatus(@NonNull Status status, @Nullable Throwable throwable) {
     mStatus = status;
     mThrowable = throwable;
+  }
+
+  protected LoadingStatus(Parcel in) {
+    int tmpMStatus = in.readInt();
+    this.mStatus = tmpMStatus == -1 ? null : Status.values()[tmpMStatus];
+    this.mThrowable = (Throwable) in.readSerializable();
   }
 
   @Override
@@ -39,17 +55,6 @@ public class LoadingStatus implements Parcelable {
     return throwable == null ? null : throwable.getMessage();
   }
 
-  public enum Status {
-    RUNNING,
-    SUCCESS,
-    EMPTY,
-    NOMORE,
-    FAILED,
-    INSERT,
-    REMOVE,
-    UPDATE
-  }
-
   @Override
   public int describeContents() {
     return 0;
@@ -61,21 +66,14 @@ public class LoadingStatus implements Parcelable {
     dest.writeSerializable(this.mThrowable);
   }
 
-  protected LoadingStatus(Parcel in) {
-    int tmpMStatus = in.readInt();
-    this.mStatus = tmpMStatus == -1 ? null : Status.values()[tmpMStatus];
-    this.mThrowable = (Throwable) in.readSerializable();
+  public enum Status {
+    RUNNING,
+    SUCCESS,
+    EMPTY,
+    NOMORE,
+    FAILED,
+    INSERT,
+    REMOVE,
+    UPDATE
   }
-
-  public static final Creator<LoadingStatus> CREATOR = new Creator<LoadingStatus>() {
-    @Override
-    public LoadingStatus createFromParcel(Parcel source) {
-      return new LoadingStatus(source);
-    }
-
-    @Override
-    public LoadingStatus[] newArray(int size) {
-      return new LoadingStatus[size];
-    }
-  };
 }

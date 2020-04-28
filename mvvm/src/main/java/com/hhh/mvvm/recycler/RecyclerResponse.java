@@ -4,9 +4,9 @@ import java.util.List;
 
 import android.text.TextUtils;
 
-import com.google.gson.annotations.SerializedName;
-
 import androidx.annotation.Nullable;
+
+import com.google.gson.annotations.SerializedName;
 
 public abstract class RecyclerResponse<MODEL> {
 
