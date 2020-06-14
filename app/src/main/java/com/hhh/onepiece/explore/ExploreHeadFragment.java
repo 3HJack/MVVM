@@ -68,7 +68,7 @@ public class ExploreHeadFragment extends BaseFragment {
   }
 
   private void monitorPageRefreshStatus() {
-    ((RecyclerFragment) getParentFragment()).getViewModel().getRefreshLiveData().observe(this,
+    ((RecyclerFragment) getParentFragment()).getViewModel().getRefreshLiveData().observe(getViewLifecycleOwner(),
         (Observer<LoadingStatus>) loadingState -> {
           if (loadingState.mStatus == LoadingStatus.Status.RUNNING) {
             mWorksModels = WorksModelGenerator.createWorksModels(3);

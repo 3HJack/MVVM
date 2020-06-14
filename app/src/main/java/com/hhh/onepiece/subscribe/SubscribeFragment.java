@@ -59,7 +59,7 @@ public class SubscribeFragment extends RecyclerFragment<WorksModel, String> {
   @Override
   public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
-    mViewModel.getModelShowLiveData().observe(this, worksModel -> {
+    mViewModel.getModelShowLiveData().observe(getViewLifecycleOwner(), worksModel -> {
       if (!worksModel.mShown) {
         worksModel.mShown = true;
         Log.e("hhh", "SubscribeFragment " + worksModel.mId + " shown");

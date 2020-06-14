@@ -181,7 +181,7 @@ public abstract class RecyclerFragment<MODEL, PARAMETER> extends BaseFragment
     mAdapter = onCreateAdapter();
     mRecyclerView.setAdapter(mAdapter);
     mViewModel = onCreateViewModel();
-    mViewModel.getPagedListLiveData().observe(this, models -> mAdapter.submitList(models));
+    mViewModel.getPagedListLiveData().observe(getViewLifecycleOwner(), models -> mAdapter.submitList(models));
   }
 
   private void initRefreshView() {
@@ -194,7 +194,7 @@ public abstract class RecyclerFragment<MODEL, PARAMETER> extends BaseFragment
     if (enableRefresh) {
       mRefreshLayout.setRefreshHeader(onCreateRefreshHeaderView());
       mRefreshLayout.setOnRefreshListener(this);
-      mViewModel.getRefreshLiveData().observe(this, loadingState -> {
+      mViewModel.getRefreshLiveData().observe(getViewLifecycleOwner(), loadingState -> {
         if (loadingState.mStatus != LoadingStatus.Status.RUNNING
             && mRefreshLayout.getState() == RefreshState.Refreshing) {
           if (loadingState.mStatus == LoadingStatus.Status.NOMORE) {
@@ -210,7 +210,7 @@ public abstract class RecyclerFragment<MODEL, PARAMETER> extends BaseFragment
     if (enableLoadMore) {
       mRefreshLayout.setRefreshFooter(onCreateRefreshFooterView());
       mRefreshLayout.setOnLoadMoreListener(this);
-      mViewModel.getAfterLiveData().observe(this, loadingState -> {
+      mViewModel.getAfterLiveData().observe(getViewLifecycleOwner(), loadingState -> {
         if (loadingState.mStatus != LoadingStatus.Status.RUNNING
             && mRefreshLayout.getState() == RefreshState.Loading) {
           if (loadingState.mStatus == LoadingStatus.Status.NOMORE) {
@@ -247,7 +247,7 @@ public abstract class RecyclerFragment<MODEL, PARAMETER> extends BaseFragment
     }
     mEmptyFragment =
         (BaseFragment) getChildFragmentManager().findFragmentById(R.id.empty_container);
-    mViewModel.getLoadingStateLiveData().observe(this, loadingState -> {
+    mViewModel.getLoadingStateLiveData().observe(getViewLifecycleOwner(), loadingState -> {
       if (loadingState.mStatus == LoadingStatus.Status.RUNNING
           || loadingState.mStatus == LoadingStatus.Status.UPDATE) {
         return;
@@ -295,7 +295,7 @@ public abstract class RecyclerFragment<MODEL, PARAMETER> extends BaseFragment
   }
 
   private void monitorModelShowStatus() {
-    mViewModel.getRefreshLiveData().observe(this, loadingStatus -> {
+    mViewModel.getRefreshLiveData().observe(getViewLifecycleOwner(), loadingStatus -> {
       if (loadingStatus.mStatus == LoadingStatus.Status.RUNNING) {
         mRefreshing = true;
         checkModelShowStatus();

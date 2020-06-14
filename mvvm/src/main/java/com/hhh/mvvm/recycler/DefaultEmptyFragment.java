@@ -20,7 +20,7 @@ public class DefaultEmptyFragment extends BaseFragment {
     super.onViewCreated(view, savedInstanceState);
     RecyclerFragment recyclerFragment = (RecyclerFragment) getParentFragment();
     RecyclerViewModel viewModel = recyclerFragment.getViewModel();
-    viewModel.getLoadingStateLiveData().observe(this, (Observer<LoadingStatus>) loadingStatus -> {
+    viewModel.getLoadingStateLiveData().observe(getViewLifecycleOwner(), (Observer<LoadingStatus>) loadingStatus -> {
       if (loadingStatus.mStatus == LoadingStatus.Status.FAILED) {
         getView().setVisibility(View.VISIBLE);
       } else {
