@@ -5,14 +5,14 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.FrameLayout;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
 import com.scwang.smartrefresh.layout.api.RefreshFooter;
 import com.scwang.smartrefresh.layout.api.RefreshKernel;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.constant.RefreshState;
 import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 public class RefreshFooterView extends FrameLayout implements RefreshFooter {
   public RefreshFooterView(@NonNull Context context) {
@@ -24,7 +24,7 @@ public class RefreshFooterView extends FrameLayout implements RefreshFooter {
   }
 
   public RefreshFooterView(@NonNull Context context, @Nullable AttributeSet attrs,
-      int defStyleAttr) {
+                           int defStyleAttr) {
     super(context, attrs, defStyleAttr);
   }
 
@@ -57,7 +57,7 @@ public class RefreshFooterView extends FrameLayout implements RefreshFooter {
 
   @Override
   public void onMoving(boolean isDragging, float percent, int offset, int height,
-      int maxDragHeight) {
+                       int maxDragHeight) {
 
   }
 
@@ -88,7 +88,7 @@ public class RefreshFooterView extends FrameLayout implements RefreshFooter {
 
   @Override
   public void onStateChanged(@NonNull RefreshLayout refreshLayout, @NonNull RefreshState oldState,
-      @NonNull RefreshState newState) {
+                             @NonNull RefreshState newState) {
 
   }
 }

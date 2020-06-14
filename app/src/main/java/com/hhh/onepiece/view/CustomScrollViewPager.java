@@ -5,11 +5,11 @@ import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 
+import com.hhh.onepiece.R;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.viewpager.widget.ViewPager;
-
-import com.hhh.onepiece.R;
 
 public class CustomScrollViewPager extends ViewPager {
 

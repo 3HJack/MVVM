@@ -1,16 +1,10 @@
 package com.hhh.onepiece.explore;
 
-import java.util.List;
-
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import androidx.annotation.Nullable;
-import androidx.lifecycle.Observer;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.bigkoo.convenientbanner.holder.Holder;
@@ -24,6 +18,12 @@ import com.hhh.onepiece.model.WorksModel;
 import com.hhh.onepiece.model.WorksModelGenerator;
 import com.hhh.onepiece.view.BannerView;
 import com.hhh.onepiece.view.NetworkImageView;
+
+import java.util.List;
+
+import androidx.annotation.Nullable;
+import androidx.lifecycle.Observer;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class ExploreHeadFragment extends BaseFragment {
 
@@ -50,7 +50,7 @@ public class ExploreHeadFragment extends BaseFragment {
         (RelativeLayout.LayoutParams) mBannerView.getIndicatorView().getLayoutParams();
     layoutParams.bottomMargin = WidgetUtils.dip2px(getContext(), 8.5f);
     mBannerView.setPageIndicator(
-        new int[] {R.drawable.home_indicator_normal, R.drawable.home_indicator_selected});
+        new int[]{R.drawable.home_indicator_normal, R.drawable.home_indicator_selected});
 
     monitorPageRefreshStatus();
   }
@@ -95,10 +95,12 @@ public class ExploreHeadFragment extends BaseFragment {
       private int originIndex;
 
       @Override
-      public void onScrollStateChanged(RecyclerView recyclerView, int i) {}
+      public void onScrollStateChanged(RecyclerView recyclerView, int i) {
+      }
 
       @Override
-      public void onScrolled(RecyclerView recyclerView, int i, int i1) {}
+      public void onScrolled(RecyclerView recyclerView, int i, int i1) {
+      }
 
       @Override
       public void onPageSelected(int index) {

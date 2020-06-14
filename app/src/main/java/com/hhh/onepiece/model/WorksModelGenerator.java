@@ -13,7 +13,8 @@ public final class WorksModelGenerator {
 
   private static int ID;
 
-  private WorksModelGenerator() {}
+  private WorksModelGenerator() {
+  }
 
   @NonNull
   public static List<WorksModel> createWorksModels(int count) {

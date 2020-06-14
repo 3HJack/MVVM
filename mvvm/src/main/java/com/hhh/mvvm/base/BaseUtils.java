@@ -1,11 +1,11 @@
 package com.hhh.mvvm.base;
 
-import java.util.List;
-
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
+
+import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,7 +15,8 @@ public final class BaseUtils {
 
   private static String LAUNCH_ACTIVITY_NAME;
 
-  private BaseUtils() {}
+  private BaseUtils() {
+  }
 
   /**
    * 从 FragmentPagerAdapter 拷贝出来的代码
@@ -26,7 +27,7 @@ public final class BaseUtils {
 
   @Nullable
   public static BaseFragment findFragmentByTag(@NonNull BaseActivity activity,
-      @NonNull String tag) {
+                                               @NonNull String tag) {
     List<Fragment> fragments = activity.getSupportFragmentManager().getFragments();
     for (Fragment fragment : fragments) {
       if (TextUtils.equals(fragment.getTag(), tag)) {

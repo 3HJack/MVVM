@@ -5,14 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.LayoutRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.hhh.mvvm.R;
 import com.hhh.mvvm.base.BaseFragment;
 import com.hhh.mvvm.host.HostFragment;
@@ -27,9 +19,17 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.constant.RefreshState;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 
+import androidx.annotation.LayoutRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 public abstract class RecyclerFragment<MODEL, PARAMETER> extends BaseFragment
     implements
-      OnRefreshLoadMoreListener {
+    OnRefreshLoadMoreListener {
 
   protected static final int MODEL_SHOW_TYPE_NONE = 0;
   protected static final int MODEL_SHOW_TYPE_ITEM = 1;
@@ -310,7 +310,8 @@ public abstract class RecyclerFragment<MODEL, PARAMETER> extends BaseFragment
     mRecyclerView
         .addOnChildAttachStateChangeListener(new RecyclerView.OnChildAttachStateChangeListener() {
           @Override
-          public void onChildViewAttachedToWindow(@NonNull View view) {}
+          public void onChildViewAttachedToWindow(@NonNull View view) {
+          }
 
           @Override
           public void onChildViewDetachedFromWindow(@NonNull View view) {

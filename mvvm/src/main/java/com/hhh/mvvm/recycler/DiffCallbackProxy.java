@@ -1,9 +1,9 @@
 package com.hhh.mvvm.recycler;
 
+import com.hhh.mvvm.listener.DiffCallback;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
-
-import com.hhh.mvvm.listener.DiffCallback;
 
 public class DiffCallbackProxy<MODEL extends DiffCallback> extends DiffUtil.ItemCallback<MODEL> {
 

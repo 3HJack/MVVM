@@ -1,14 +1,14 @@
 package com.hhh.onepiece.live;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.lifecycle.ViewModelProviders;
-
 import com.hhh.mvvm.recycler.DiffCallbackProxy;
 import com.hhh.mvvm.recycler.RecyclerFragment;
 import com.hhh.mvvm.recycler.RecyclerPagedListAdapter;
 import com.hhh.mvvm.recycler.RecyclerViewModel;
 import com.hhh.onepiece.model.WorksModel;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.lifecycle.ViewModelProviders;
 
 public class LiveFragment extends RecyclerFragment<WorksModel, String> {
 

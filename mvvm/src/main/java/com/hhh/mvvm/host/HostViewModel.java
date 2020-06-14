@@ -1,11 +1,11 @@
 package com.hhh.mvvm.host;
 
+import com.hhh.mvvm.recycler.ScrollStatus;
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-
-import com.hhh.mvvm.recycler.ScrollStatus;
 
 public class HostViewModel extends ViewModel {
 

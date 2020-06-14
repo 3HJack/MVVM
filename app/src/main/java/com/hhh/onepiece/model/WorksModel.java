@@ -1,8 +1,8 @@
 package com.hhh.onepiece.model;
 
-import androidx.annotation.NonNull;
-
 import com.hhh.mvvm.listener.DiffCallback;
+
+import androidx.annotation.NonNull;
 
 public final class WorksModel implements DiffCallback<WorksModel> {
 

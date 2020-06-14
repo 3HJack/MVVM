@@ -1,18 +1,17 @@
 package com.hhh.mvvm.recycler;
 
+import android.annotation.SuppressLint;
+
+import com.hhh.mvvm.async.Async;
+import com.hhh.mvvm.base.BaseUtils;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import android.annotation.SuppressLint;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.MutableLiveData;
 import androidx.paging.PageKeyedDataSource;
-
-import com.hhh.mvvm.async.Async;
-import com.hhh.mvvm.base.BaseUtils;
-
 import io.reactivex.Observable;
 
 public abstract class RecyclerDataSource<PAGE extends RecyclerResponse<MODEL>, MODEL, PARAMETER>
@@ -30,14 +29,14 @@ public abstract class RecyclerDataSource<PAGE extends RecyclerResponse<MODEL>, M
   private Runnable mRetry;
 
   public RecyclerDataSource(@NonNull PARAMETER parameter,
-      @NonNull DataSourceSnapshot<?, MODEL> dataSourceSnapshot) {
+                            @NonNull DataSourceSnapshot<?, MODEL> dataSourceSnapshot) {
     mParameter = parameter;
     mDataSourceSnapshot = (DataSourceSnapshot<PAGE, MODEL>) dataSourceSnapshot;
   }
 
   @NonNull
   protected abstract Observable<PAGE> onCreateInitialRequest(int loadSize,
-      @Nullable String pageKey);
+                                                             @Nullable String pageKey);
 
   @Nullable
   protected Observable<PAGE> onCreateBeforeRequest(int loadSize, @Nullable String pageKey) {
@@ -52,7 +51,7 @@ public abstract class RecyclerDataSource<PAGE extends RecyclerResponse<MODEL>, M
   @SuppressLint("CheckResult")
   @Override
   public void loadInitial(@NonNull LoadInitialParams<String> params,
-      @NonNull LoadInitialCallback<String, MODEL> callback) {
+                          @NonNull LoadInitialCallback<String, MODEL> callback) {
     if (mDataSourceSnapshot.mInsertingItem
         || mDataSourceSnapshot.mRemovingItem
         || mDataSourceSnapshot.mUpdatingItem) {
@@ -95,7 +94,7 @@ public abstract class RecyclerDataSource<PAGE extends RecyclerResponse<MODEL>, M
   @SuppressLint("CheckResult")
   @Override
   public void loadBefore(@NonNull LoadParams<String> params,
-      @NonNull LoadCallback<String, MODEL> callback) {
+                         @NonNull LoadCallback<String, MODEL> callback) {
     Observable<PAGE> request =
         onCreateBeforeRequest(params.requestedLoadSize, getPreviousPageKey());
     if (request != null) {
@@ -118,7 +117,7 @@ public abstract class RecyclerDataSource<PAGE extends RecyclerResponse<MODEL>, M
   @SuppressLint("CheckResult")
   @Override
   public void loadAfter(@NonNull LoadParams<String> params,
-      @NonNull LoadCallback<String, MODEL> callback) {
+                        @NonNull LoadCallback<String, MODEL> callback) {
     mAfterLiveData.postValue(LoadingStatus.STATE_RUNNING);
     onCreateAfterRequest(params.requestedLoadSize, getNextPageKey()).subscribe(page -> {
       mDataSourceSnapshot.mPage = page;

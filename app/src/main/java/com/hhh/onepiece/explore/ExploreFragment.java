@@ -4,12 +4,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.StaggeredGridLayoutManager;
-
 import com.hhh.mvvm.base.BaseFragment;
 import com.hhh.mvvm.recycler.DiffCallbackProxy;
 import com.hhh.mvvm.recycler.RecyclerFragment;
@@ -18,6 +12,12 @@ import com.hhh.mvvm.recycler.RecyclerViewModel;
 import com.hhh.mvvm.recycler.StaggeredGridItemDecoration;
 import com.hhh.onepiece.main.WidgetUtils;
 import com.hhh.onepiece.model.WorksModel;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 public class ExploreFragment extends RecyclerFragment<WorksModel, String> {
 

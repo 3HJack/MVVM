@@ -3,11 +3,11 @@ package com.hhh.mvvm.recycler;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.annotation.Nullable;
-import androidx.lifecycle.Observer;
-
 import com.hhh.mvvm.R;
 import com.hhh.mvvm.base.BaseFragment;
+
+import androidx.annotation.Nullable;
+import androidx.lifecycle.Observer;
 
 public class DefaultEmptyFragment extends BaseFragment {
   @Override
