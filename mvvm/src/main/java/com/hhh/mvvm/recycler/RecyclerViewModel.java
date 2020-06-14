@@ -76,7 +76,7 @@ public abstract class RecyclerViewModel<MODEL, PARAMETER> extends ViewModel {
 
   @NonNull
   protected abstract RecyclerDataSource<?, MODEL, PARAMETER> onCreateDataSource(PARAMETER parameter,
-                                                                                @NonNull DataSourceSnapshot<?, MODEL> dataSourceSnapshot);
+      @NonNull DataSourceSnapshot<?, MODEL> dataSourceSnapshot);
 
   @NonNull
   public DataSourceSnapshot<?, MODEL> getDataSourceSnapshot() {

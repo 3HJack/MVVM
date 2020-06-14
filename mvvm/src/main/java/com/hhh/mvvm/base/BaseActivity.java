@@ -94,12 +94,12 @@ public abstract class BaseActivity extends RxFragmentActivity {
   }
 
   public void startActivityForCallback(@NonNull Intent intent, int requestCode,
-                                       @NonNull OnActivityResultListener resultListener) {
+      @NonNull OnActivityResultListener resultListener) {
     startActivityForCallback(intent, requestCode, null, resultListener);
   }
 
   public void startActivityForCallback(@NonNull Intent intent, int requestCode,
-                                       @Nullable Bundle options, @NonNull OnActivityResultListener resultListener) {
+      @Nullable Bundle options, @NonNull OnActivityResultListener resultListener) {
     mRequestCode = requestCode;
     mActivityResultListener = resultListener;
     startActivityForResult(intent, requestCode, options);

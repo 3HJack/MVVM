@@ -21,7 +21,7 @@ public abstract class RecyclerPagedListAdapter<MODEL>
 
   @NonNull
   protected abstract RecyclerViewHolder<MODEL> onCreateItemViewHolder(@NonNull ViewGroup parent,
-                                                                      int viewLayout);
+      int viewLayout);
 
   @LayoutRes
   protected abstract int getItemViewLayout(int position);
@@ -29,7 +29,7 @@ public abstract class RecyclerPagedListAdapter<MODEL>
   @NonNull
   @Override
   public final RecyclerViewHolder<MODEL> onCreateViewHolder(@NonNull ViewGroup parent,
-                                                            int viewType) {
+      int viewType) {
     return onCreateItemViewHolder(parent, viewType);
   }
 

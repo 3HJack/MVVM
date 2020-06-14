@@ -14,14 +14,14 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 public class LiveDataSource extends RecyclerDataSource<LiveFeedResponse, WorksModel, String> {
 
   public LiveDataSource(@NonNull String s,
-                        @NonNull DataSourceSnapshot<?, WorksModel> dataSourceSnapshot) {
+      @NonNull DataSourceSnapshot<?, WorksModel> dataSourceSnapshot) {
     super(s, dataSourceSnapshot);
   }
 
   @NonNull
   @Override
   protected Observable<LiveFeedResponse> onCreateInitialRequest(int loadSize,
-                                                                @Nullable String pageKey) {
+      @Nullable String pageKey) {
     return Observable.fromCallable(() -> {
       LiveFeedResponse response = new LiveFeedResponse();
       response.mCursor = String.valueOf(WorksModelGenerator.getID());

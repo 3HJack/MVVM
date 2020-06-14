@@ -12,7 +12,7 @@ public class ExploreViewModel extends RecyclerViewModel<WorksModel, String> {
   @NonNull
   @Override
   protected RecyclerDataSource<?, WorksModel, String> onCreateDataSource(String s,
-                                                                         @NonNull DataSourceSnapshot<?, WorksModel> dataSourceSnapshot) {
+      @NonNull DataSourceSnapshot<?, WorksModel> dataSourceSnapshot) {
     return new ExploreDataSource(s, dataSourceSnapshot);
   }
 }

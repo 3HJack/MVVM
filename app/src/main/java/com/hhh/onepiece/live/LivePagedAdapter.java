@@ -21,7 +21,7 @@ public class LivePagedAdapter extends RecyclerPagedListAdapter<WorksModel> {
   @NonNull
   @Override
   protected RecyclerViewHolder<WorksModel> onCreateItemViewHolder(@NonNull ViewGroup parent,
-                                                                  int viewLayout) {
+      int viewLayout) {
     View view = LayoutInflater.from(parent.getContext()).inflate(viewLayout, parent, false);
     return new LiveViewHolder(view);
   }

@@ -23,7 +23,7 @@ public abstract class BaseFragment extends RxFragment implements OnPageSelectedL
   @Nullable
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                           @Nullable Bundle savedInstanceState) {
+      @Nullable Bundle savedInstanceState) {
     int layoutId = getLayoutResId();
     if (layoutId != 0) {
       return inflater.inflate(layoutId, container, false);
@@ -52,12 +52,12 @@ public abstract class BaseFragment extends RxFragment implements OnPageSelectedL
   }
 
   public final void startActivityForCallback(@NonNull Intent intent, int requestCode,
-                                             @NonNull OnActivityResultListener resultListener) {
+      @NonNull OnActivityResultListener resultListener) {
     startActivityForCallback(intent, requestCode, null, resultListener);
   }
 
   public final void startActivityForCallback(@NonNull Intent intent, int requestCode,
-                                             @Nullable Bundle options, @NonNull OnActivityResultListener resultListener) {
+      @Nullable Bundle options, @NonNull OnActivityResultListener resultListener) {
     if (isAdded()) {
       BaseActivity activity = (BaseActivity) getActivity();
       activity.startActivityForCallback(intent, requestCode, options, resultListener);
