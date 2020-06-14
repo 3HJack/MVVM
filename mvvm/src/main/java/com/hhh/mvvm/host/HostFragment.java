@@ -19,7 +19,7 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager.widget.ViewPager;
 
 public abstract class HostFragment extends BaseFragment {
@@ -41,7 +41,7 @@ public abstract class HostFragment extends BaseFragment {
 
   @NonNull
   protected HostViewModel onCreateViewModel() {
-    return ViewModelProviders.of(this).get(HostViewModel.class);
+    return new ViewModelProvider(this).get(HostViewModel.class);
   }
 
   @NonNull

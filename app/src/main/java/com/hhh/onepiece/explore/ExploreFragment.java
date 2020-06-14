@@ -15,7 +15,7 @@ import com.hhh.onepiece.model.WorksModel;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
@@ -43,7 +43,7 @@ public class ExploreFragment extends RecyclerFragment<WorksModel, String> {
   @NonNull
   @Override
   protected RecyclerViewModel<WorksModel, String> onCreateViewModel() {
-    return ViewModelProviders.of(this).get(ExploreViewModel.class);
+    return new ViewModelProvider(this).get(ExploreViewModel.class);
   }
 
   @Nullable

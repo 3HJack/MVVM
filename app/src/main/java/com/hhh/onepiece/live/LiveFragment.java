@@ -8,7 +8,7 @@ import com.hhh.onepiece.model.WorksModel;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 public class LiveFragment extends RecyclerFragment<WorksModel, String> {
 
@@ -21,7 +21,7 @@ public class LiveFragment extends RecyclerFragment<WorksModel, String> {
   @NonNull
   @Override
   protected RecyclerViewModel<WorksModel, String> onCreateViewModel() {
-    return ViewModelProviders.of(this).get(LiveViewModel.class);
+    return new ViewModelProvider(this).get(LiveViewModel.class);
   }
 
   @Nullable
