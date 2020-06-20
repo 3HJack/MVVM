@@ -12,7 +12,7 @@ import com.hhh.mvvm.base.BaseFragment;
 public class DefaultEmptyFragment extends BaseFragment {
   @Override
   protected int getLayoutResId() {
-    return R.layout.universal_empty_layout;
+    return R.layout.mvvm_empty_layout;
   }
 
   @Override

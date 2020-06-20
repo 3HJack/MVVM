@@ -46,7 +46,7 @@ public class RefreshHeadView extends FrameLayout implements RefreshHeader {
     layoutParams.gravity = Gravity.CENTER;
     addView(mProgressView, layoutParams);
     mAnimView = new ImageView(getContext());
-    mAnimView.setImageResource(R.drawable.universal_refresh_anim);
+    mAnimView.setImageResource(R.drawable.mvvm_refresh_anim);
     mAnimDrawable = (AnimationDrawable) mAnimView.getDrawable();
     size = (int) (30 * getResources().getDisplayMetrics().density + 0.5f);
     layoutParams = new LayoutParams(size, size);

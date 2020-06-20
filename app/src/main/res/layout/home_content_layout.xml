@@ -23,6 +23,5 @@
     android:layout_height="0dp"
     app:layout_constraintBottom_toTopOf="@id/tab_layout"
     app:layout_constraintTop_toBottomOf="@id/top_bar"
-    app:scrollable="false"
     app:smooth_scrollable="false" />
 </androidx.constraintlayout.widget.ConstraintLayout>

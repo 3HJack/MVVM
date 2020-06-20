@@ -3,7 +3,10 @@ package com.hhh.onepiece.live;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.hhh.mvvm.base.BaseFragment;
+import com.hhh.mvvm.recycler.DefaultHeadFootAdapter;
 import com.hhh.mvvm.recycler.DiffCallbackProxy;
 import com.hhh.mvvm.recycler.RecyclerFragment;
 import com.hhh.mvvm.recycler.RecyclerPagedListAdapter;
@@ -33,5 +36,15 @@ public class LiveFragment extends RecyclerFragment<WorksModel, String> {
   @Override
   protected boolean hasFixedSize() {
     return true;
+  }
+
+  @Override
+  protected RecyclerView.Adapter<? extends RecyclerView.ViewHolder> onCreateHeadAdapter() {
+    return new DefaultHeadFootAdapter(this) {
+      @Override
+      protected BaseFragment onCreateFragment() {
+        return new LiveHeadFragment();
+      }
+    };
   }
 }

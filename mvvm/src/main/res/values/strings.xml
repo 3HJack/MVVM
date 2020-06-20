@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="custom_scrolling_view_behavior" translatable="false">com.hhh.mvvm.recycler.CustomScrollingViewBehavior</string>
-
   <string name="universal_network_error">网络连接失败，请稍后重试</string>
   <string name="universal_refresh">刷新</string>
 </resources>

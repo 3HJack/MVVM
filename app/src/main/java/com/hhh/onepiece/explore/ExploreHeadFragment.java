@@ -7,7 +7,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
-import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
@@ -15,8 +15,8 @@ import com.bigkoo.convenientbanner.holder.Holder;
 import com.bigkoo.convenientbanner.listener.OnPageChangeListener;
 import com.hhh.mvvm.base.BaseFragment;
 import com.hhh.mvvm.recycler.LoadingStatus;
-import com.hhh.mvvm.recycler.RecyclerFragment;
 import com.hhh.onepiece.R;
+import com.hhh.onepiece.main.HomeViewModel;
 import com.hhh.onepiece.main.WidgetUtils;
 import com.hhh.onepiece.model.WorksModel;
 import com.hhh.onepiece.model.WorksModelGenerator;
@@ -44,13 +44,13 @@ public class ExploreHeadFragment extends BaseFragment {
     mTitleView = findViewById(R.id.title);
 
     mBannerView.getLayoutParams().height =
-        getResources().getDisplayMetrics().widthPixels * 3 / 4
-            + WidgetUtils.dip2px(getContext(), 21f);
+      getResources().getDisplayMetrics().widthPixels * 3 / 4 + WidgetUtils.dip2px(getContext(),
+        21f);
     RelativeLayout.LayoutParams layoutParams =
-        (RelativeLayout.LayoutParams) mBannerView.getIndicatorView().getLayoutParams();
+      (RelativeLayout.LayoutParams) mBannerView.getIndicatorView().getLayoutParams();
     layoutParams.bottomMargin = WidgetUtils.dip2px(getContext(), 8.5f);
-    mBannerView.setPageIndicator(
-        new int[]{R.drawable.home_indicator_normal, R.drawable.home_indicator_selected});
+    mBannerView.setPageIndicator(new int[]{R.drawable.home_indicator_normal,
+      R.drawable.home_indicator_selected});
 
     monitorPageRefreshStatus();
   }
@@ -68,13 +68,12 @@ public class ExploreHeadFragment extends BaseFragment {
   }
 
   private void monitorPageRefreshStatus() {
-    ((RecyclerFragment) getParentFragment()).getViewModel().getRefreshLiveData().observe(getViewLifecycleOwner(),
-        (Observer<LoadingStatus>) loadingState -> {
-          if (loadingState.mStatus == LoadingStatus.Status.RUNNING) {
-            mWorksModels = WorksModelGenerator.createWorksModels(3);
-            refreshUI(mWorksModels);
-          }
-        });
+    new ViewModelProvider(requireActivity()).get(HomeViewModel.class).getExploreRefreshLiveData().observe(getViewLifecycleOwner(), loadingState -> {
+      if (loadingState.mStatus == LoadingStatus.Status.RUNNING) {
+        mWorksModels = WorksModelGenerator.createWorksModels(3);
+        refreshUI(mWorksModels);
+      }
+    });
   }
 
   private void refreshUI(List<WorksModel> modelList) {

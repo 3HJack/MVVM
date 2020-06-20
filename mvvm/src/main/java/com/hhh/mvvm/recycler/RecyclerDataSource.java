@@ -1,13 +1,14 @@
 package com.hhh.mvvm.recycler;
 
 import android.annotation.SuppressLint;
+import android.os.Handler;
+import android.os.HandlerThread;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.MutableLiveData;
 import androidx.paging.PageKeyedDataSource;
 
-import com.hhh.mvvm.async.Async;
 import com.hhh.mvvm.base.BaseUtils;
 
 import java.util.ArrayList;
@@ -15,8 +16,9 @@ import java.util.List;
 
 import io.reactivex.Observable;
 
-public abstract class RecyclerDataSource<PAGE extends RecyclerResponse<MODEL>, MODEL, PARAMETER>
-    extends PageKeyedDataSource<String, MODEL> {
+public abstract class RecyclerDataSource<PAGE extends RecyclerResponse<MODEL>, MODEL, PARAMETER> extends PageKeyedDataSource<String, MODEL> {
+
+  private static Handler sAsyncHandler;
 
   protected final MutableLiveData<LoadingStatus> mInitialLiveData = new MutableLiveData<>();
   protected final MutableLiveData<LoadingStatus> mBeforeLiveData = new MutableLiveData<>();
@@ -30,14 +32,23 @@ public abstract class RecyclerDataSource<PAGE extends RecyclerResponse<MODEL>, M
   private Runnable mRetry;
 
   public RecyclerDataSource(@NonNull PARAMETER parameter,
-      @NonNull DataSourceSnapshot<?, MODEL> dataSourceSnapshot) {
+    @NonNull DataSourceSnapshot<?, MODEL> dataSourceSnapshot) {
     mParameter = parameter;
     mDataSourceSnapshot = (DataSourceSnapshot<PAGE, MODEL>) dataSourceSnapshot;
   }
 
+  private static Handler getsAsyncHandler() {
+    if (sAsyncHandler == null) {
+      HandlerThread handlerThread = new HandlerThread("mvvm");
+      handlerThread.start();
+      sAsyncHandler = new Handler(handlerThread.getLooper());
+    }
+    return sAsyncHandler;
+  }
+
   @NonNull
   protected abstract Observable<PAGE> onCreateInitialRequest(int loadSize,
-      @Nullable String pageKey);
+    @Nullable String pageKey);
 
   @Nullable
   protected Observable<PAGE> onCreateBeforeRequest(int loadSize, @Nullable String pageKey) {
@@ -52,10 +63,8 @@ public abstract class RecyclerDataSource<PAGE extends RecyclerResponse<MODEL>, M
   @SuppressLint("CheckResult")
   @Override
   public void loadInitial(@NonNull LoadInitialParams<String> params,
-      @NonNull LoadInitialCallback<String, MODEL> callback) {
-    if (mDataSourceSnapshot.mInsertingItem
-        || mDataSourceSnapshot.mRemovingItem
-        || mDataSourceSnapshot.mUpdatingItem) {
+    @NonNull LoadInitialCallback<String, MODEL> callback) {
+    if (mDataSourceSnapshot.mInsertingItem || mDataSourceSnapshot.mRemovingItem || mDataSourceSnapshot.mUpdatingItem) {
       callback.onResult(mDataSourceSnapshot.getModels(), getPreviousPageKey(), getNextPageKey());
       if (mDataSourceSnapshot.mInsertingItem) {
         mDataSourceSnapshot.mInsertingItem = false;
@@ -84,7 +93,7 @@ public abstract class RecyclerDataSource<PAGE extends RecyclerResponse<MODEL>, M
       }
       onLoadInitialSuccess();
     }, throwable -> {
-      mRetry = () -> Async.execute(() -> loadInitial(params, callback));
+      mRetry = () -> sAsyncHandler.post(() -> loadInitial(params, callback));
       if (!mDataSourceSnapshot.mModels.isEmpty()) {
         callback.onResult(mDataSourceSnapshot.getModels(), getPreviousPageKey(), getNextPageKey());
       }
@@ -95,9 +104,9 @@ public abstract class RecyclerDataSource<PAGE extends RecyclerResponse<MODEL>, M
   @SuppressLint("CheckResult")
   @Override
   public void loadBefore(@NonNull LoadParams<String> params,
-      @NonNull LoadCallback<String, MODEL> callback) {
-    Observable<PAGE> request =
-        onCreateBeforeRequest(params.requestedLoadSize, getPreviousPageKey());
+    @NonNull LoadCallback<String, MODEL> callback) {
+    Observable<PAGE> request = onCreateBeforeRequest(params.requestedLoadSize,
+      getPreviousPageKey());
     if (request != null) {
       mBeforeLiveData.postValue(LoadingStatus.STATE_RUNNING);
       request.subscribe(page -> {
@@ -109,7 +118,7 @@ public abstract class RecyclerDataSource<PAGE extends RecyclerResponse<MODEL>, M
         }
         onLoadBeforeSuccess();
       }, throwable -> {
-        mRetry = () -> Async.execute(() -> loadBefore(params, callback));
+        mRetry = () -> sAsyncHandler.post(() -> loadBefore(params, callback));
         onLoadBeforeFail(throwable);
       });
     }
@@ -118,7 +127,7 @@ public abstract class RecyclerDataSource<PAGE extends RecyclerResponse<MODEL>, M
   @SuppressLint("CheckResult")
   @Override
   public void loadAfter(@NonNull LoadParams<String> params,
-      @NonNull LoadCallback<String, MODEL> callback) {
+    @NonNull LoadCallback<String, MODEL> callback) {
     mAfterLiveData.postValue(LoadingStatus.STATE_RUNNING);
     onCreateAfterRequest(params.requestedLoadSize, getNextPageKey()).subscribe(page -> {
       mDataSourceSnapshot.mPage = page;
@@ -129,7 +138,7 @@ public abstract class RecyclerDataSource<PAGE extends RecyclerResponse<MODEL>, M
       }
       onLoadAfterSuccess();
     }, throwable -> {
-      mRetry = () -> Async.execute(() -> loadAfter(params, callback));
+      mRetry = () -> sAsyncHandler.post(() -> loadAfter(params, callback));
       onLoadAfterFail(throwable);
     });
   }
@@ -171,16 +180,13 @@ public abstract class RecyclerDataSource<PAGE extends RecyclerResponse<MODEL>, M
 
   @Nullable
   public String getNextPageKey() {
-    return mDataSourceSnapshot.mPage == null
-        ? null
-        : mDataSourceSnapshot.mPage.getNextPageKey();
+    return mDataSourceSnapshot.mPage == null ? null : mDataSourceSnapshot.mPage.getNextPageKey();
   }
 
   @Nullable
   public String getPreviousPageKey() {
-    return mDataSourceSnapshot.mPage == null
-        ? null
-        : mDataSourceSnapshot.mPage.getPreviousPageKey();
+    return mDataSourceSnapshot.mPage == null ? null :
+      mDataSourceSnapshot.mPage.getPreviousPageKey();
   }
 
   protected void onLoadInitialSuccess() {

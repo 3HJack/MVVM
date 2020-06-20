@@ -8,7 +8,7 @@
   <ImageView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:src="@drawable/universal_network_error" />
+    android:src="@drawable/mvvm_network_error" />
 
   <TextView
     android:layout_width="wrap_content"
@@ -23,9 +23,9 @@
     android:layout_width="160dp"
     android:layout_height="32dp"
     android:layout_marginTop="20dp"
-    android:background="@drawable/universal_execute_big_background"
+    android:background="@drawable/mvvm_execute_big_background"
     android:gravity="center"
     android:text="@string/universal_refresh"
-    android:textColor="@color/universal_text_color_ffffff"
+    android:textColor="@color/mvvm_text_color_ffffff"
     android:textSize="@dimen/text_size_15" />
 </LinearLayout>
