@@ -9,9 +9,9 @@ import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.hhh.mvvm.R;
-
 import androidx.annotation.AnyThread;
+
+import com.hhh.mvvm.R;
 
 /**
  * 环形进度条

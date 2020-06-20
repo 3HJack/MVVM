@@ -3,14 +3,14 @@ package com.hhh.onepiece.subscribe;
 import android.graphics.drawable.ColorDrawable;
 import android.view.View;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.hhh.mvvm.listener.OnImageShowListener;
 import com.hhh.mvvm.recycler.RecyclerViewHolder;
 import com.hhh.onepiece.R;
 import com.hhh.onepiece.model.WorksModel;
 import com.hhh.onepiece.view.NetworkImageView;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 public class SubscribeViewHolder extends RecyclerViewHolder<WorksModel> {
 

@@ -6,20 +6,20 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.drawerlayout.widget.DrawerLayout;
+
 import com.google.android.material.tabs.TabLayout;
 import com.hhh.mvvm.base.BaseFragment;
-import com.hhh.mvvm.host.HostFragment;
-import com.hhh.mvvm.host.HostPagerAdapter;
+import com.hhh.mvvm.multi.MultiFragment;
+import com.hhh.mvvm.multi.MultiPagerAdapter;
 import com.hhh.onepiece.R;
 import com.hhh.onepiece.explore.ExploreFragment;
 import com.hhh.onepiece.live.LiveFragment;
 import com.hhh.onepiece.subscribe.SubscribeFragment;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.drawerlayout.widget.DrawerLayout;
-
-public class HomeFragment extends HostFragment {
+public class HomeFragment extends MultiFragment {
 
   private DrawerLayout mDrawerLayout;
 
@@ -29,8 +29,8 @@ public class HomeFragment extends HostFragment {
   }
 
   @Override
-  protected HostPagerAdapter onCreatePagerAdapter() {
-    return new HostPagerAdapter(getChildFragmentManager(), R.id.view_pager, 3) {
+  protected MultiPagerAdapter onCreatePagerAdapter() {
+    return new MultiPagerAdapter(getChildFragmentManager(), R.id.view_pager, 3) {
       @NonNull
       @Override
       protected BaseFragment onCreateFragment(int position) {

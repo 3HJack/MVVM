@@ -6,14 +6,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.hhh.mvvm.listener.OnActivityResultListener;
-import com.hhh.mvvm.listener.OnPageSelectedListener;
-import com.trello.rxlifecycle3.components.support.RxFragment;
-
 import androidx.annotation.IdRes;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import com.hhh.mvvm.listener.OnActivityResultListener;
+import com.hhh.mvvm.listener.OnPageSelectedListener;
+import com.trello.rxlifecycle3.components.support.RxFragment;
 
 public abstract class BaseFragment extends RxFragment implements OnPageSelectedListener {
 

@@ -1,10 +1,10 @@
 package com.hhh.onepiece.model;
 
+import androidx.annotation.NonNull;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
-import androidx.annotation.NonNull;
 
 public final class WorksModelGenerator {
 

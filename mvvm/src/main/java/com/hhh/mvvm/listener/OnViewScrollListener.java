@@ -1,9 +1,9 @@
 package com.hhh.mvvm.listener;
 
-import com.hhh.mvvm.recycler.ScrollStatus;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import com.hhh.mvvm.recycler.ScrollStatus;
 
 public interface OnViewScrollListener {
 

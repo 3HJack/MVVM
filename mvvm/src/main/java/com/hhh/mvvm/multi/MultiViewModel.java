@@ -1,13 +1,13 @@
-package com.hhh.mvvm.host;
-
-import com.hhh.mvvm.recycler.ScrollStatus;
+package com.hhh.mvvm.multi;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class HostViewModel extends ViewModel {
+import com.hhh.mvvm.recycler.ScrollStatus;
+
+public class MultiViewModel extends ViewModel {
 
   protected final MutableLiveData<ScrollStatus> mScrollStatusLiveData = new MutableLiveData<>();
 

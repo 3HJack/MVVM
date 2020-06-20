@@ -1,8 +1,14 @@
-package com.hhh.mvvm.host;
+package com.hhh.mvvm.multi;
 
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 import com.hhh.mvvm.R;
@@ -16,23 +22,17 @@ import com.scwang.smartrefresh.layout.api.RefreshHeader;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.viewpager.widget.ViewPager;
-
-public abstract class HostFragment extends BaseFragment {
+public abstract class MultiFragment extends BaseFragment {
 
   protected ViewPager mViewPager;
   protected TabLayout mTabLayout;
   protected ViewGroup mHeadContainerView;
   protected SmartRefreshLayout mRefreshLayout;
-  protected HostPagerAdapter mPagerAdapter;
+  protected MultiPagerAdapter mPagerAdapter;
   protected BaseFragment mHeadFragment;
-  protected HostViewModel mViewModel;
+  protected MultiViewModel mViewModel;
 
-  protected abstract HostPagerAdapter onCreatePagerAdapter();
+  protected abstract MultiPagerAdapter onCreatePagerAdapter();
 
   @Nullable
   protected BaseFragment onCreateHeadFragment() {
@@ -40,8 +40,8 @@ public abstract class HostFragment extends BaseFragment {
   }
 
   @NonNull
-  protected HostViewModel onCreateViewModel() {
-    return new ViewModelProvider(this).get(HostViewModel.class);
+  protected MultiViewModel onCreateViewModel() {
+    return new ViewModelProvider(this).get(MultiViewModel.class);
   }
 
   @NonNull

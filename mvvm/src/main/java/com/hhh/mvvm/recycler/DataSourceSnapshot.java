@@ -1,10 +1,10 @@
 package com.hhh.mvvm.recycler;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DataSourceSnapshot<PAGE extends RecyclerResponse<MODEL>, MODEL> {
 

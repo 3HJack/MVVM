@@ -2,16 +2,17 @@ package com.hhh.mvvm.recycler;
 
 import android.annotation.SuppressLint;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.lifecycle.MutableLiveData;
+import androidx.paging.PageKeyedDataSource;
+
 import com.hhh.mvvm.async.Async;
 import com.hhh.mvvm.base.BaseUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.lifecycle.MutableLiveData;
-import androidx.paging.PageKeyedDataSource;
 import io.reactivex.Observable;
 
 public abstract class RecyclerDataSource<PAGE extends RecyclerResponse<MODEL>, MODEL, PARAMETER>

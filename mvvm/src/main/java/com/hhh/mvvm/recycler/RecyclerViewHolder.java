@@ -2,14 +2,14 @@ package com.hhh.mvvm.recycler;
 
 import android.view.View;
 
-import com.hhh.mvvm.base.BaseActivity;
-import com.hhh.mvvm.listener.OnImageShowListener;
-
 import androidx.annotation.CallSuper;
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.hhh.mvvm.base.BaseActivity;
+import com.hhh.mvvm.listener.OnImageShowListener;
 
 public abstract class RecyclerViewHolder<MODEL> extends RecyclerView.ViewHolder {
 

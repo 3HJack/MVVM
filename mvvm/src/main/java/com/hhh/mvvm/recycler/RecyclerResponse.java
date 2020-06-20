@@ -2,11 +2,11 @@ package com.hhh.mvvm.recycler;
 
 import android.text.TextUtils;
 
+import androidx.annotation.Nullable;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
-
-import androidx.annotation.Nullable;
 
 public abstract class RecyclerResponse<MODEL> {
 

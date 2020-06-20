@@ -5,11 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
 
-import java.util.List;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import java.util.List;
 
 public final class BaseUtils {
 

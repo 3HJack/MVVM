@@ -4,11 +4,11 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.google.android.material.appbar.AppBarLayout;
-import com.hhh.mvvm.listener.OnViewScrollListener;
-
 import androidx.annotation.Nullable;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+
+import com.google.android.material.appbar.AppBarLayout;
+import com.hhh.mvvm.listener.OnViewScrollListener;
 
 public class CustomScrollingViewBehavior extends AppBarLayout.ScrollingViewBehavior
     implements

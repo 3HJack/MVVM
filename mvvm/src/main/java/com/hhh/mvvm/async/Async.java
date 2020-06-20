@@ -1,11 +1,11 @@
 package com.hhh.mvvm.async;
 
+import androidx.annotation.NonNull;
+
 import java.util.concurrent.Future;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
-
-import androidx.annotation.NonNull;
 
 public class Async {
 

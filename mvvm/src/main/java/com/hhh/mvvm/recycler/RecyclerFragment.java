@@ -5,11 +5,19 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.LayoutRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.hhh.mvvm.R;
 import com.hhh.mvvm.base.BaseFragment;
-import com.hhh.mvvm.host.HostFragment;
 import com.hhh.mvvm.listener.OnImageShowListener;
 import com.hhh.mvvm.listener.OnViewScrollListener;
+import com.hhh.mvvm.multi.MultiFragment;
 import com.hhh.mvvm.view.RefreshFooterView;
 import com.hhh.mvvm.view.RefreshHeadView;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -18,14 +26,6 @@ import com.scwang.smartrefresh.layout.api.RefreshHeader;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.constant.RefreshState;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
-
-import androidx.annotation.LayoutRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 public abstract class RecyclerFragment<MODEL, PARAMETER> extends BaseFragment
     implements
@@ -154,8 +154,8 @@ public abstract class RecyclerFragment<MODEL, PARAMETER> extends BaseFragment
 
   public boolean isCurrentFragment() {
     Fragment fragment = getParentFragment();
-    if (fragment instanceof HostFragment) {
-      return ((HostFragment) fragment).getCurrentFragment() == this;
+    if (fragment instanceof MultiFragment) {
+      return ((MultiFragment) fragment).getCurrentFragment() == this;
     }
     return true;
   }

@@ -1,4 +1,8 @@
-package com.hhh.mvvm.host;
+package com.hhh.mvvm.multi;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.hhh.mvvm.base.BaseFragment;
 import com.hhh.mvvm.base.BaseUtils;
@@ -6,20 +10,16 @@ import com.hhh.mvvm.base.BaseUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
-
 /**
  * 不支持动态添加和移除fragment
  */
-public abstract class HostPagerAdapter extends FragmentPagerAdapter {
+public abstract class MultiPagerAdapter extends FragmentPagerAdapter {
 
   private final List<BaseFragment> mFragmentList;
   private final FragmentManager mFragmentManager;
   private final int mViewId;
 
-  public HostPagerAdapter(FragmentManager fm, int viewId, int count) {
+  public MultiPagerAdapter(FragmentManager fm, int viewId, int count) {
     super(fm);
     mFragmentManager = fm;
     mViewId = viewId;

@@ -4,6 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 
+import androidx.annotation.IdRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentManager;
+
 import com.hhh.mvvm.R;
 import com.hhh.mvvm.listener.OnActivityResultListener;
 import com.hhh.mvvm.listener.OnBackPressedListener;
@@ -11,11 +16,6 @@ import com.trello.rxlifecycle3.components.support.RxFragmentActivity;
 
 import java.util.LinkedList;
 import java.util.List;
-
-import androidx.annotation.IdRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.FragmentManager;
 
 public abstract class BaseActivity extends RxFragmentActivity {
 
