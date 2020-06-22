@@ -41,7 +41,7 @@ public class SubscribeFragment extends RecyclerFragment<WorksModel, String> {
   @Override
   protected RecyclerView.ItemDecoration onCreateItemDecoration() {
     DividerItemDecoration decoration =
-        new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
+        new DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL);
     decoration.setDrawable(getResources().getDrawable(R.drawable.home_subscribe_divider_line));
     return decoration;
   }

@@ -31,13 +31,16 @@ public abstract class BaseActivity extends RxFragmentActivity {
   private OnActivityResultListener mActivityResultListener;
   private int mRequestCode;
 
+  @NonNull
+  protected abstract BaseFragment onCreateFragment();
+
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     if (enableTransitionAnim()) {
       Intent intent = getIntent();
       overridePendingTransition(intent.getIntExtra(open_in_animation, R.anim.slide_in_from_right),
-          intent.getIntExtra(open_out_animation, R.anim.slide_stay));
+        intent.getIntExtra(open_out_animation, R.anim.slide_stay));
     }
     int containerViewId = getContainerViewId();
     FragmentManager fragmentManager = getSupportFragmentManager();
@@ -45,7 +48,7 @@ public abstract class BaseActivity extends RxFragmentActivity {
     if (mFragment == null) {
       mFragment = onCreateFragment();
       fragmentManager.beginTransaction()
-          .replace(containerViewId, mFragment, mFragment.getClass().getName()).commit();
+        .replace(containerViewId, mFragment, mFragment.getClass().getName()).commit();
     }
   }
 
@@ -58,20 +61,16 @@ public abstract class BaseActivity extends RxFragmentActivity {
     return true;
   }
 
-  @NonNull
-  protected abstract BaseFragment onCreateFragment();
-
   @Override
   public void finish() {
     super.finish();
-    if (isTaskRoot()
-        && !TextUtils.equals(this.getClass().getName(), BaseUtils.getLaunchActivityName(this))) {
+    if (isTaskRoot() && !TextUtils.equals(this.getClass().getName(), BaseUtils.getLaunchActivityName(this))) {
       BaseUtils.startHomeActivity(this);
     }
     if (enableTransitionAnim()) {
       Intent intent = getIntent();
       overridePendingTransition(intent.getIntExtra(close_in_animation, R.anim.slide_stay),
-          intent.getIntExtra(close_out_animation, R.anim.slide_out_to_right));
+        intent.getIntExtra(close_out_animation, R.anim.slide_out_to_right));
     }
   }
 
@@ -94,12 +93,12 @@ public abstract class BaseActivity extends RxFragmentActivity {
   }
 
   public void startActivityForCallback(@NonNull Intent intent, int requestCode,
-      @NonNull OnActivityResultListener resultListener) {
+    @NonNull OnActivityResultListener resultListener) {
     startActivityForCallback(intent, requestCode, null, resultListener);
   }
 
   public void startActivityForCallback(@NonNull Intent intent, int requestCode,
-      @Nullable Bundle options, @NonNull OnActivityResultListener resultListener) {
+    @Nullable Bundle options, @NonNull OnActivityResultListener resultListener) {
     mRequestCode = requestCode;
     mActivityResultListener = resultListener;
     startActivityForResult(intent, requestCode, options);
@@ -112,8 +111,7 @@ public abstract class BaseActivity extends RxFragmentActivity {
     return this;
   }
 
-  public BaseActivity removeBackPressedListener(
-      @NonNull OnBackPressedListener backPressedListener) {
+  public BaseActivity removeBackPressedListener(@NonNull OnBackPressedListener backPressedListener) {
     mBackPressedListenerList.remove(backPressedListener);
     return this;
   }

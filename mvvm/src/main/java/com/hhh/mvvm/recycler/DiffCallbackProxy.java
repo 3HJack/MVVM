@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.DiffUtil;
 
 import com.hhh.mvvm.listener.DiffCallback;
 
-public class DiffCallbackProxy<MODEL extends DiffCallback> extends DiffUtil.ItemCallback<MODEL> {
+public class DiffCallbackProxy<MODEL extends DiffCallback<MODEL>> extends DiffUtil.ItemCallback<MODEL> {
 
   @Override
   public boolean areItemsTheSame(@NonNull MODEL oldItem, @NonNull MODEL newItem) {

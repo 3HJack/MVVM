@@ -16,7 +16,7 @@
     android:layout_marginTop="12dp"
     android:text="@string/universal_network_error"
     android:textColor="@color/color_9C9C9C"
-    android:textSize="@dimen/text_size_14" />
+    android:textSize="14sp" />
 
   <TextView
     android:id="@+id/retry"
@@ -27,5 +27,5 @@
     android:gravity="center"
     android:text="@string/universal_refresh"
     android:textColor="@color/mvvm_text_color_ffffff"
-    android:textSize="@dimen/text_size_15" />
+    android:textSize="15sp" />
 </LinearLayout>

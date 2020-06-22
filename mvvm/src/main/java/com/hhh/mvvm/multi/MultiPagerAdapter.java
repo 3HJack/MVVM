@@ -29,6 +29,9 @@ public abstract class MultiPagerAdapter extends FragmentPagerAdapter {
     }
   }
 
+  @NonNull
+  protected abstract BaseFragment onCreateFragment(int position);
+
   @Override
   public BaseFragment getItem(int position) {
     BaseFragment fragment = mFragmentList.get(position);
@@ -36,7 +39,7 @@ public abstract class MultiPagerAdapter extends FragmentPagerAdapter {
       return fragment;
     }
     fragment = (BaseFragment) mFragmentManager
-        .findFragmentByTag(BaseUtils.makeFragmentName(mViewId, getItemId(position)));
+      .findFragmentByTag(BaseUtils.makeFragmentName(mViewId, getItemId(position)));
     if (fragment == null) {
       fragment = onCreateFragment(position);
     }
@@ -48,7 +51,4 @@ public abstract class MultiPagerAdapter extends FragmentPagerAdapter {
   public int getCount() {
     return mFragmentList.size();
   }
-
-  @NonNull
-  protected abstract BaseFragment onCreateFragment(int position);
 }

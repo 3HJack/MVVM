@@ -52,8 +52,8 @@ dependencies {
 publish {
     userOrg = 'onepiece'
     groupId = 'com.hhh.onepiece'
-    artifactId = 'mvvm-x'
-    publishVersion = '0.0.1'
+    artifactId = 'mvvm'
+    publishVersion = '1.1.1'
     desc = '基于Google MVVM架构和Jetpack组件而设计的一套多Tab、Feed流页面解决方案'
     website = 'https://github.com/3HJack/MVVM'
 }

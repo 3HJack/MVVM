@@ -8,8 +8,7 @@ import androidx.paging.PagedListAdapter;
 import androidx.recyclerview.widget.AsyncDifferConfig;
 import androidx.recyclerview.widget.DiffUtil;
 
-public abstract class RecyclerPagedListAdapter<MODEL>
-    extends PagedListAdapter<MODEL, RecyclerViewHolder<MODEL>> {
+public abstract class RecyclerPagedListAdapter<MODEL> extends PagedListAdapter<MODEL, RecyclerViewHolder<MODEL>> {
 
   protected RecyclerPagedListAdapter(@NonNull DiffUtil.ItemCallback<MODEL> diffCallback) {
     super(diffCallback);
@@ -20,16 +19,14 @@ public abstract class RecyclerPagedListAdapter<MODEL>
   }
 
   @NonNull
-  protected abstract RecyclerViewHolder<MODEL> onCreateItemViewHolder(@NonNull ViewGroup parent,
-      int viewLayout);
+  protected abstract RecyclerViewHolder<MODEL> onCreateItemViewHolder(@NonNull ViewGroup parent, int viewLayout);
 
   @LayoutRes
   protected abstract int getItemViewLayout(int position);
 
   @NonNull
   @Override
-  public final RecyclerViewHolder<MODEL> onCreateViewHolder(@NonNull ViewGroup parent,
-      int viewType) {
+  public final RecyclerViewHolder<MODEL> onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
     return onCreateItemViewHolder(parent, viewType);
   }
 

@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.hhh.mvvm.R;
 import com.hhh.mvvm.base.BaseFragment;
 import com.hhh.mvvm.listener.OnImageShowListener;
-import com.hhh.mvvm.listener.OnViewScrollListener;
 import com.hhh.mvvm.multi.MultiFragment;
 import com.hhh.mvvm.view.RefreshFooterView;
 import com.hhh.mvvm.view.RefreshHeadView;
@@ -48,11 +47,13 @@ public abstract class RecyclerFragment<MODEL, PARAMETER> extends BaseFragment im
   protected int mShowType;
   protected boolean mRefreshing;
 
-  @LayoutRes
-  @Override
-  protected int getLayoutResId() {
-    return R.layout.mvvm_recycler_layout;
-  }
+  protected abstract boolean hasFixedSize();
+
+  @Nullable
+  protected abstract PARAMETER onCreateParameter();
+
+  @NonNull
+  protected abstract RecyclerViewModel<MODEL, PARAMETER> onCreateViewModel();
 
   @NonNull
   protected abstract RecyclerPagedListAdapter<MODEL> onCreateAdapter();
@@ -65,17 +66,15 @@ public abstract class RecyclerFragment<MODEL, PARAMETER> extends BaseFragment im
     return null;
   }
 
-  @NonNull
-  protected abstract RecyclerViewModel<MODEL, PARAMETER> onCreateViewModel();
-
-  @Nullable
-  protected abstract PARAMETER onCreateParameter();
-
-  protected abstract boolean hasFixedSize();
+  @LayoutRes
+  @Override
+  protected int getLayoutResId() {
+    return R.layout.mvvm_recycler_layout;
+  }
 
   @NonNull
   protected RecyclerView.LayoutManager onCreateLayoutManager() {
-    return new LinearLayoutManager(getContext());
+    return new LinearLayoutManager(requireContext());
   }
 
   @Nullable
@@ -90,17 +89,12 @@ public abstract class RecyclerFragment<MODEL, PARAMETER> extends BaseFragment im
 
   @NonNull
   protected RefreshHeader onCreateRefreshHeaderView() {
-    return new RefreshHeadView(getContext());
+    return new RefreshHeadView(requireContext());
   }
 
   @NonNull
   protected RefreshFooter onCreateRefreshFooterView() {
-    return new RefreshFooterView(getContext());
-  }
-
-  @Nullable
-  protected OnViewScrollListener getViewScrollListener() {
-    return null;
+    return new RefreshFooterView(requireContext());
   }
 
   protected int getModelShowType() {
@@ -121,7 +115,6 @@ public abstract class RecyclerFragment<MODEL, PARAMETER> extends BaseFragment im
     initRecycleView();
     initRefreshView();
     initEmptyView();
-    monitorScrollStatus();
     monitorModelShowStatus();
     if (isCurrentFragment()) {
       mViewModel.loadData(onCreateParameter());
@@ -168,16 +161,20 @@ public abstract class RecyclerFragment<MODEL, PARAMETER> extends BaseFragment im
     return mAdapter != null && mAdapter.getItemCount() == 0;
   }
 
-  public boolean removeAdapter() {
+  public boolean removeHeadAdapter() {
     if (mHeadAdapter != null) {
-      return mMergeAdapter.removeAdapter(mHeadAdapter);
+      boolean value = mMergeAdapter.removeAdapter(mHeadAdapter);
+      mHeadAdapter = null;
+      return value;
     }
     return false;
   }
 
   public boolean removeFootAdapter() {
     if (mFootAdapter != null) {
-      return mMergeAdapter.removeAdapter(mFootAdapter);
+      boolean value = mMergeAdapter.removeAdapter(mFootAdapter);
+      mFootAdapter = null;
+      return value;
     }
     return false;
   }
@@ -284,12 +281,6 @@ public abstract class RecyclerFragment<MODEL, PARAMETER> extends BaseFragment im
     }
   }
 
-  private void monitorScrollStatus() {
-    OnViewScrollListener viewScrollListener = getViewScrollListener();
-    if (viewScrollListener != null) {
-      viewScrollListener.setViewScrollCallback(scrollStatus -> mViewModel.setScrollStatus(scrollStatus));
-    }
-  }
 
   private void monitorModelShowStatus() {
     mViewModel.getRefreshLiveData().observe(getViewLifecycleOwner(), loadingStatus -> {

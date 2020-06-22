@@ -32,8 +32,8 @@ public class ExploreFragment extends RecyclerFragment<WorksModel, String> {
   @NonNull
   @Override
   protected RecyclerView.ItemDecoration onCreateItemDecoration() {
-    int space = WidgetUtils.dip2px(getContext(), 6f);
-    return new StaggeredGridItemDecoration(space, space, WidgetUtils.dip2px(getContext(), 8.5f));
+    int space = WidgetUtils.dip2px(requireContext(), 6f);
+    return new StaggeredGridItemDecoration(space, space, WidgetUtils.dip2px(requireContext(), 8.5f));
   }
 
   @NonNull

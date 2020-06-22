@@ -16,11 +16,11 @@ import com.hhh.mvvm.base.BaseFragment;
 
 import java.lang.ref.WeakReference;
 
-public abstract class DefaultHeadFootAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class DefaultHeadFootAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-  private WeakReference<RecyclerFragment> mRecyclerFragment;
+  private WeakReference<RecyclerFragment<?, ?>> mRecyclerFragment;
 
-  public DefaultHeadFootAdapter(RecyclerFragment recyclerFragment) {
+  public DefaultHeadFootAdapter(RecyclerFragment<?, ?> recyclerFragment) {
     mRecyclerFragment = new WeakReference<>(recyclerFragment);
   }
 

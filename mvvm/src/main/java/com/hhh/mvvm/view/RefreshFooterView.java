@@ -24,7 +24,7 @@ public class RefreshFooterView extends FrameLayout implements RefreshFooter {
   }
 
   public RefreshFooterView(@NonNull Context context, @Nullable AttributeSet attrs,
-      int defStyleAttr) {
+    int defStyleAttr) {
     super(context, attrs, defStyleAttr);
   }
 
@@ -57,7 +57,7 @@ public class RefreshFooterView extends FrameLayout implements RefreshFooter {
 
   @Override
   public void onMoving(boolean isDragging, float percent, int offset, int height,
-      int maxDragHeight) {
+    int maxDragHeight) {
 
   }
 
@@ -88,7 +88,7 @@ public class RefreshFooterView extends FrameLayout implements RefreshFooter {
 
   @Override
   public void onStateChanged(@NonNull RefreshLayout refreshLayout, @NonNull RefreshState oldState,
-      @NonNull RefreshState newState) {
+    @NonNull RefreshState newState) {
 
   }
 }

@@ -16,6 +16,7 @@ public class LoadingStatus implements Parcelable {
   public static final LoadingStatus STATE_INSERT = new LoadingStatus(Status.INSERT, null);
   public static final LoadingStatus STATE_REMOVE = new LoadingStatus(Status.REMOVE, null);
   public static final LoadingStatus STATE_UPDATE = new LoadingStatus(Status.UPDATE, null);
+
   public static final Creator<LoadingStatus> CREATOR = new Creator<LoadingStatus>() {
     @Override
     public LoadingStatus createFromParcel(Parcel source) {
@@ -27,6 +28,7 @@ public class LoadingStatus implements Parcelable {
       return new LoadingStatus[size];
     }
   };
+
   public final Status mStatus;
   public final Throwable mThrowable;
 
@@ -48,7 +50,7 @@ public class LoadingStatus implements Parcelable {
     }
     LoadingStatus loadingStatus = (LoadingStatus) obj;
     return mStatus == loadingStatus.mStatus
-        && TextUtils.equals(getMessage(mThrowable), getMessage(loadingStatus.mThrowable));
+      && TextUtils.equals(getMessage(mThrowable), getMessage(loadingStatus.mThrowable));
   }
 
   private String getMessage(Throwable throwable) {

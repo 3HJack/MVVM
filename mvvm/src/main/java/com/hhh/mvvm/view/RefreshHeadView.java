@@ -78,7 +78,7 @@ public class RefreshHeadView extends FrameLayout implements RefreshHeader {
 
   @Override
   public void onMoving(boolean isDragging, float percent, int offset, int height,
-      int maxDragHeight) {
+    int maxDragHeight) {
     if (isDragging && percent > 0.6f) {
       mProgressView.setProgress((int) (100 * (percent * 2.5f - 1.5f)));
     }
@@ -115,7 +115,7 @@ public class RefreshHeadView extends FrameLayout implements RefreshHeader {
 
   @Override
   public void onStateChanged(@NonNull RefreshLayout refreshLayout, @NonNull RefreshState oldState,
-      @NonNull RefreshState newState) {
+    @NonNull RefreshState newState) {
     if (oldState == RefreshState.None && newState == RefreshState.PullDownToRefresh) {
       mProgressView.setProgress(0);
       mProgressView.setVisibility(VISIBLE);

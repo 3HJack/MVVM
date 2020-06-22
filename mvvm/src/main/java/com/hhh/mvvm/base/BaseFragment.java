@@ -20,19 +20,19 @@ public abstract class BaseFragment extends RxFragment implements OnPageSelectedL
   public BaseFragment() {
   }
 
+  @LayoutRes
+  protected abstract int getLayoutResId();
+
   @Nullable
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-      @Nullable Bundle savedInstanceState) {
+    @Nullable Bundle savedInstanceState) {
     int layoutId = getLayoutResId();
     if (layoutId != 0) {
       return inflater.inflate(layoutId, container, false);
     }
     return null;
   }
-
-  @LayoutRes
-  protected abstract int getLayoutResId();
 
   @Nullable
   public final <T extends View> T findViewById(@IdRes int id) {
@@ -41,25 +41,25 @@ public abstract class BaseFragment extends RxFragment implements OnPageSelectedL
 
   public final void finish() {
     if (isAdded()) {
-      getActivity().finish();
+      requireActivity().finish();
     }
   }
 
   public final void onBackPressed() {
     if (isAdded()) {
-      getActivity().onBackPressed();
+      requireActivity().onBackPressed();
     }
   }
 
   public final void startActivityForCallback(@NonNull Intent intent, int requestCode,
-      @NonNull OnActivityResultListener resultListener) {
+    @NonNull OnActivityResultListener resultListener) {
     startActivityForCallback(intent, requestCode, null, resultListener);
   }
 
   public final void startActivityForCallback(@NonNull Intent intent, int requestCode,
-      @Nullable Bundle options, @NonNull OnActivityResultListener resultListener) {
+    @Nullable Bundle options, @NonNull OnActivityResultListener resultListener) {
     if (isAdded()) {
-      BaseActivity activity = (BaseActivity) getActivity();
+      BaseActivity activity = (BaseActivity) requireActivity();
       activity.startActivityForCallback(intent, requestCode, options, resultListener);
     }
   }

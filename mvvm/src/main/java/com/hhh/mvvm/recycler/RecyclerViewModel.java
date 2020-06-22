@@ -17,7 +17,6 @@ public abstract class RecyclerViewModel<MODEL, PARAMETER> extends ViewModel {
 
   protected final DataSourceSnapshot<?, MODEL> mDataSourceSnapshot;
   protected final MutableLiveData<MODEL> mModelShowLiveData;
-  protected final MutableLiveData<ScrollStatus> mScrollStatusLiveData;
   protected final MutableLiveData<PARAMETER> mStartLoadLiveData;
   protected final MutableLiveData<RecyclerDataSource> mDataSourceLiveData;
   protected final LiveData<PagedList<MODEL>> mPagedListLiveData;
@@ -32,51 +31,42 @@ public abstract class RecyclerViewModel<MODEL, PARAMETER> extends ViewModel {
   public RecyclerViewModel() {
     mDataSourceSnapshot = new DataSourceSnapshot<>();
     mModelShowLiveData = new MutableLiveData<>();
-    mScrollStatusLiveData = new MutableLiveData<>();
     mStartLoadLiveData = new MutableLiveData<>();
     mDataSourceLiveData = new MutableLiveData<>();
     mPagedListLiveData = Transformations.switchMap(mStartLoadLiveData,
-        input -> new LivePagedListBuilder<>(new DataSource.Factory<String, MODEL>() {
-          @Override
-          public DataSource<String, MODEL> create() {
-            RecyclerDataSource<?, MODEL, PARAMETER> dataSource =
-                onCreateDataSource(input, mDataSourceSnapshot);
-            mDataSourceLiveData.postValue(dataSource);
-            return dataSource;
-          }
-        }, onCreatePagedListConfig())
-            .setBoundaryCallback(onCreateBoundaryCallback())
-            .build());
+      input -> new LivePagedListBuilder<>(new DataSource.Factory<String, MODEL>() {
+      @Override
+      public DataSource<String, MODEL> create() {
+        RecyclerDataSource<?, MODEL, PARAMETER> dataSource = onCreateDataSource(input,
+          mDataSourceSnapshot);
+        mDataSourceLiveData.postValue(dataSource);
+        return dataSource;
+      }
+    }, onCreatePagedListConfig()).setBoundaryCallback(onCreateBoundaryCallback()).build());
     mRefreshLiveData = Transformations.switchMap(mDataSourceLiveData,
-        (Function<RecyclerDataSource, LiveData<LoadingStatus>>) input -> input.mInitialLiveData);
-    mBeforeLiveData = Transformations.switchMap(mDataSourceLiveData,
-        (Function<RecyclerDataSource, LiveData<LoadingStatus>>) input -> input.mBeforeLiveData);
-    mAfterLiveData = Transformations.switchMap(mDataSourceLiveData,
-        (Function<RecyclerDataSource, LiveData<LoadingStatus>>) input -> input.mAfterLiveData);
-    mInsertLiveData = Transformations.switchMap(mDataSourceLiveData,
-        (Function<RecyclerDataSource, LiveData<LoadingStatus>>) input -> input.mInsertLiveData);
-    mRemoveLiveData = Transformations.switchMap(mDataSourceLiveData,
-        (Function<RecyclerDataSource, LiveData<LoadingStatus>>) input -> input.mRemoveLiveData);
-    mUpdateLiveData = Transformations.switchMap(mDataSourceLiveData,
-        (Function<RecyclerDataSource, LiveData<LoadingStatus>>) input -> input.mUpdateLiveData);
+      (Function<RecyclerDataSource, LiveData<LoadingStatus>>) input -> input.mInitialLiveData);
+    mBeforeLiveData = Transformations.switchMap(mDataSourceLiveData, (Function<RecyclerDataSource
+      , LiveData<LoadingStatus>>) input -> input.mBeforeLiveData);
+    mAfterLiveData = Transformations.switchMap(mDataSourceLiveData, (Function<RecyclerDataSource,
+      LiveData<LoadingStatus>>) input -> input.mAfterLiveData);
+    mInsertLiveData = Transformations.switchMap(mDataSourceLiveData, (Function<RecyclerDataSource
+      , LiveData<LoadingStatus>>) input -> input.mInsertLiveData);
+    mRemoveLiveData = Transformations.switchMap(mDataSourceLiveData, (Function<RecyclerDataSource
+      , LiveData<LoadingStatus>>) input -> input.mRemoveLiveData);
+    mUpdateLiveData = Transformations.switchMap(mDataSourceLiveData, (Function<RecyclerDataSource
+      , LiveData<LoadingStatus>>) input -> input.mUpdateLiveData);
+
     mStateLiveData = new MediatorLiveData<>();
-    mStateLiveData.addSource(mRefreshLiveData,
-        loadingStatus -> mStateLiveData.setValue(loadingStatus));
-    mStateLiveData.addSource(mBeforeLiveData,
-        loadingStatus -> mStateLiveData.setValue(loadingStatus));
-    mStateLiveData.addSource(mAfterLiveData,
-        loadingStatus -> mStateLiveData.setValue(loadingStatus));
-    mStateLiveData.addSource(mInsertLiveData,
-        loadingStatus -> mStateLiveData.setValue(loadingStatus));
-    mStateLiveData.addSource(mRemoveLiveData,
-        loadingStatus -> mStateLiveData.setValue(loadingStatus));
-    mStateLiveData.addSource(mUpdateLiveData,
-        loadingStatus -> mStateLiveData.setValue(loadingStatus));
+    mStateLiveData.addSource(mRefreshLiveData, mStateLiveData::setValue);
+    mStateLiveData.addSource(mBeforeLiveData, mStateLiveData::setValue);
+    mStateLiveData.addSource(mAfterLiveData, mStateLiveData::setValue);
+    mStateLiveData.addSource(mInsertLiveData, mStateLiveData::setValue);
+    mStateLiveData.addSource(mRemoveLiveData, mStateLiveData::setValue);
+    mStateLiveData.addSource(mUpdateLiveData, mStateLiveData::setValue);
   }
 
   @NonNull
-  protected abstract RecyclerDataSource<?, MODEL, PARAMETER> onCreateDataSource(PARAMETER parameter,
-      @NonNull DataSourceSnapshot<?, MODEL> dataSourceSnapshot);
+  protected abstract RecyclerDataSource<?, MODEL, PARAMETER> onCreateDataSource(PARAMETER parameter, @NonNull DataSourceSnapshot<?, MODEL> dataSourceSnapshot);
 
   @NonNull
   public DataSourceSnapshot<?, MODEL> getDataSourceSnapshot() {
@@ -91,16 +81,6 @@ public abstract class RecyclerViewModel<MODEL, PARAMETER> extends ViewModel {
   @MainThread
   public void setModelShow(@NonNull MODEL model) {
     mModelShowLiveData.setValue(model);
-  }
-
-  @NonNull
-  public LiveData<ScrollStatus> getScrollStatusLiveData() {
-    return mScrollStatusLiveData;
-  }
-
-  @MainThread
-  public void setScrollStatus(@NonNull ScrollStatus scrollStatus) {
-    mScrollStatusLiveData.setValue(scrollStatus);
   }
 
   @NonNull
@@ -196,8 +176,7 @@ public abstract class RecyclerViewModel<MODEL, PARAMETER> extends ViewModel {
 
   @NonNull
   protected PagedList.Config onCreatePagedListConfig() {
-    return new PagedList.Config.Builder().setInitialLoadSizeHint(20).setPageSize(20)
-        .setPrefetchDistance(8).build();
+    return new PagedList.Config.Builder().setInitialLoadSizeHint(20).setPageSize(20).setPrefetchDistance(8).build();
   }
 
   @Nullable

@@ -27,7 +27,7 @@ public final class BaseUtils {
 
   @Nullable
   public static BaseFragment findFragmentByTag(@NonNull BaseActivity activity,
-      @NonNull String tag) {
+    @NonNull String tag) {
     List<Fragment> fragments = activity.getSupportFragmentManager().getFragments();
     for (Fragment fragment : fragments) {
       if (TextUtils.equals(fragment.getTag(), tag)) {

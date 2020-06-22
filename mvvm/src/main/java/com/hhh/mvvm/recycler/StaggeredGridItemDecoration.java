@@ -21,18 +21,18 @@ public class StaggeredGridItemDecoration extends RecyclerView.ItemDecoration {
 
   @Override
   public void getItemOffsets(@NonNull Rect outRect, @NonNull View view,
-      @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
+    @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
     StaggeredGridLayoutManager layoutManager =
-        (StaggeredGridLayoutManager) parent.getLayoutManager();
+      (StaggeredGridLayoutManager) parent.getLayoutManager();
     StaggeredGridLayoutManager.LayoutParams layoutParams =
-        (StaggeredGridLayoutManager.LayoutParams) view.getLayoutParams();
+      (StaggeredGridLayoutManager.LayoutParams) view.getLayoutParams();
     int spanCount = layoutManager.getSpanCount();
     if (layoutParams.isFullSpan()) {
       outRect.set(0, 0, 0, 0);
       return;
     }
     int halfMiddle = mMiddle >> 1;
-    int position = parent.getChildAdapterPosition(view);
+    int position = parent.getChildViewHolder(view).getBindingAdapterPosition();
     if (position < spanCount) {
       outRect.top = mTop;
     } else {

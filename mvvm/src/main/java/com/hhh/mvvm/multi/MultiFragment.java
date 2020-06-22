@@ -7,13 +7,11 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 import com.hhh.mvvm.R;
 import com.hhh.mvvm.base.BaseFragment;
-import com.hhh.mvvm.listener.OnViewScrollListener;
 import com.hhh.mvvm.view.RefreshFooterView;
 import com.hhh.mvvm.view.RefreshHeadView;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -30,7 +28,6 @@ public abstract class MultiFragment extends BaseFragment {
   protected SmartRefreshLayout mRefreshLayout;
   protected MultiPagerAdapter mPagerAdapter;
   protected BaseFragment mHeadFragment;
-  protected MultiViewModel mViewModel;
 
   protected abstract MultiPagerAdapter onCreatePagerAdapter();
 
@@ -40,23 +37,13 @@ public abstract class MultiFragment extends BaseFragment {
   }
 
   @NonNull
-  protected MultiViewModel onCreateViewModel() {
-    return new ViewModelProvider(this).get(MultiViewModel.class);
-  }
-
-  @NonNull
   protected RefreshHeader onCreateRefreshHeaderView() {
-    return new RefreshHeadView(getContext());
+    return new RefreshHeadView(requireContext());
   }
 
   @NonNull
   protected RefreshFooter onCreateRefreshFooterView() {
-    return new RefreshFooterView(getContext());
-  }
-
-  @Nullable
-  protected OnViewScrollListener getViewScrollListener() {
-    return null;
+    return new RefreshFooterView(requireContext());
   }
 
   protected boolean enableRefresh() {
@@ -70,12 +57,10 @@ public abstract class MultiFragment extends BaseFragment {
   @Override
   public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
-    mViewModel = onCreateViewModel();
     initViewPager();
     initTabLayout();
     initHeadView();
     initRefreshView();
-    monitorScrollStatus();
   }
 
   @Nullable
@@ -130,9 +115,8 @@ public abstract class MultiFragment extends BaseFragment {
     if (mHeadFragment == null) {
       mHeadFragment = onCreateHeadFragment();
       if (mHeadFragment != null) {
-        fragmentManager.beginTransaction()
-            .replace(R.id.head_container, mHeadFragment, mHeadFragment.getClass().getName())
-            .commit();
+        fragmentManager.beginTransaction().replace(R.id.head_container, mHeadFragment,
+          mHeadFragment.getClass().getName()).commit();
       }
     }
   }
@@ -163,14 +147,6 @@ public abstract class MultiFragment extends BaseFragment {
           ((OnLoadMoreListener) currentFragment).onLoadMore(mRefreshLayout);
         }
       });
-    }
-  }
-
-  private void monitorScrollStatus() {
-    OnViewScrollListener viewScrollListener = getViewScrollListener();
-    if (viewScrollListener != null) {
-      viewScrollListener
-          .setViewScrollCallback(scrollStatus -> mViewModel.postScrollStatus(scrollStatus));
     }
   }
 }

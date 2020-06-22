@@ -50,7 +50,7 @@ public class RoundProgressView extends View {
 
     mRoundColor = array.getColor(R.styleable.RoundProgressView_roundColor, Color.TRANSPARENT);
     mRoundWidth = array.getDimension(R.styleable.RoundProgressView_roundWidth,
-        (int) (2.5 * getResources().getDisplayMetrics().density + 0.5f));
+      (int) (2.5 * getResources().getDisplayMetrics().density + 0.5f));
     mProgressColor = array.getColor(R.styleable.RoundProgressView_progressColor, 0xFFE77168);
     mProgressWidth = array.getDimension(R.styleable.RoundProgressView_progressWidth, mRoundWidth);
     mMaxValue = array.getInteger(R.styleable.RoundProgressView_maxValue, 100);

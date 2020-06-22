@@ -44,11 +44,11 @@ public class ExploreHeadFragment extends BaseFragment {
     mTitleView = findViewById(R.id.title);
 
     mBannerView.getLayoutParams().height =
-      getResources().getDisplayMetrics().widthPixels * 3 / 4 + WidgetUtils.dip2px(getContext(),
+      getResources().getDisplayMetrics().widthPixels * 3 / 4 + WidgetUtils.dip2px(requireContext(),
         21f);
     RelativeLayout.LayoutParams layoutParams =
       (RelativeLayout.LayoutParams) mBannerView.getIndicatorView().getLayoutParams();
-    layoutParams.bottomMargin = WidgetUtils.dip2px(getContext(), 8.5f);
+    layoutParams.bottomMargin = WidgetUtils.dip2px(requireContext(), 8.5f);
     mBannerView.setPageIndicator(new int[]{R.drawable.home_indicator_normal,
       R.drawable.home_indicator_selected});
 
