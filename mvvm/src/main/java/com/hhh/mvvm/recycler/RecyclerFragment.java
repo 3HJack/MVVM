@@ -260,7 +260,7 @@ public abstract class RecyclerFragment<MODEL, PARAMETER> extends BaseFragment im
     });
   }
 
-  private void showEmptyView() {
+  protected void showEmptyView() {
     if (mEmptyFragment == null) {
       mEmptyFragment = onCreateEmptyFragment();
     }
@@ -274,7 +274,7 @@ public abstract class RecyclerFragment<MODEL, PARAMETER> extends BaseFragment im
     }
   }
 
-  private void hideEmptyView() {
+  protected void hideEmptyView() {
     if (mEmptyFragment != null && mEmptyFragment.isAdded()) {
       getChildFragmentManager().beginTransaction().remove(mEmptyFragment).commit();
       mEmptyContainerView.setVisibility(View.GONE);
