@@ -27,7 +27,7 @@ allprojects {
 ```
 
 ```
-implementation 'com.hhh.onepiece:mvvm:1.1.1'
+implementation 'com.hhh.onepiece:mvvm:1.1.2'
 ```
 
 ## 实现原理

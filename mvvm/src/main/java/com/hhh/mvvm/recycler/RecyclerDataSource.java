@@ -93,7 +93,7 @@ public abstract class RecyclerDataSource<PAGE extends RecyclerResponse<MODEL>, M
       }
       onLoadInitialSuccess();
     }, throwable -> {
-      mRetry = () -> sAsyncHandler.post(() -> loadInitial(params, callback));
+      mRetry = () -> getsAsyncHandler().post(() -> loadInitial(params, callback));
       if (!mDataSourceSnapshot.mModels.isEmpty()) {
         callback.onResult(mDataSourceSnapshot.getModels(), getPreviousPageKey(), getNextPageKey());
       }
@@ -118,7 +118,7 @@ public abstract class RecyclerDataSource<PAGE extends RecyclerResponse<MODEL>, M
         }
         onLoadBeforeSuccess();
       }, throwable -> {
-        mRetry = () -> sAsyncHandler.post(() -> loadBefore(params, callback));
+        mRetry = () -> getsAsyncHandler().post(() -> loadBefore(params, callback));
         onLoadBeforeFail(throwable);
       });
     }
@@ -138,7 +138,7 @@ public abstract class RecyclerDataSource<PAGE extends RecyclerResponse<MODEL>, M
       }
       onLoadAfterSuccess();
     }, throwable -> {
-      mRetry = () -> sAsyncHandler.post(() -> loadAfter(params, callback));
+      mRetry = () -> getsAsyncHandler().post(() -> loadAfter(params, callback));
       onLoadAfterFail(throwable);
     });
   }
