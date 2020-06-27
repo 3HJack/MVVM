@@ -170,6 +170,10 @@ public abstract class RecyclerFragment<MODEL, PARAMETER> extends BaseFragment im
     return false;
   }
 
+  public boolean existHeadAdapter() {
+    return mMergeAdapter.getAdapters().contains(mHeadAdapter);
+  }
+
   public boolean removeFootAdapter() {
     if (mFootAdapter != null) {
       boolean value = mMergeAdapter.removeAdapter(mFootAdapter);
@@ -177,6 +181,10 @@ public abstract class RecyclerFragment<MODEL, PARAMETER> extends BaseFragment im
       return value;
     }
     return false;
+  }
+
+  public boolean existFootAdapter() {
+    return mMergeAdapter.getAdapters().contains(mFootAdapter);
   }
 
   private void initRecycleView() {
@@ -188,17 +196,14 @@ public abstract class RecyclerFragment<MODEL, PARAMETER> extends BaseFragment im
       mRecyclerView.addItemDecoration(itemDecoration);
     }
     List<RecyclerView.Adapter<? extends RecyclerView.ViewHolder>> adapterList = new ArrayList<>();
-    mHeadAdapter = onCreateHeadAdapter();
-    if (mHeadAdapter != null) {
+    if ((mHeadAdapter = onCreateHeadAdapter()) != null) {
       adapterList.add(mHeadAdapter);
     }
     adapterList.add(mAdapter = onCreateAdapter());
-    mFootAdapter = onCreateFootAdapter();
-    if (mFootAdapter != null) {
+    if ((mFootAdapter = onCreateFootAdapter()) != null) {
       adapterList.add(mFootAdapter);
     }
-    mMergeAdapter = new MergeAdapter(adapterList);
-    mRecyclerView.setAdapter(mMergeAdapter);
+    mRecyclerView.setAdapter(mMergeAdapter = new MergeAdapter(adapterList));
     mViewModel = onCreateViewModel();
     mViewModel.getPagedListLiveData().observe(getViewLifecycleOwner(),
       models -> mAdapter.submitList(models));
