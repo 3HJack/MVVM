@@ -7,46 +7,26 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.View;
-import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-/**
- * DividerItemDecoration is a {@link RecyclerView.ItemDecoration} that can be used as a divider
- * between items of a {@link LinearLayoutManager}. It supports both {@link #HORIZONTAL} and
- * {@link #VERTICAL} orientations.
- *
- * <pre>
- *     mDividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
- *             mLayoutManager.getOrientation());
- *     recyclerView.addItemDecoration(mDividerItemDecoration);
- * </pre>
- */
 public class DividerItemDecoration extends RecyclerView.ItemDecoration {
-  public static final int HORIZONTAL = LinearLayout.HORIZONTAL;
-  public static final int VERTICAL = LinearLayout.VERTICAL;
 
-  private static final String TAG = "DividerItem";
+  public static final int HORIZONTAL = 0;
+  public static final int VERTICAL = 1;
+
+  private static final String TAG = "DividerItemDecoration";
   private static final int[] ATTRS = new int[]{android.R.attr.listDivider};
+
   private final Rect mBounds = new Rect();
   private Drawable mDivider;
-  /**
-   * Current orientation. Either {@link #HORIZONTAL} or {@link #VERTICAL}.
-   */
+
   private int mOrientation;
   private int mHeadViewId;
   private int mFootViewId;
 
-  /**
-   * Creates a divider {@link RecyclerView.ItemDecoration} that can be used with a
-   * {@link LinearLayoutManager}.
-   *
-   * @param context     Current context, it will be used to access resources.
-   * @param orientation Divider orientation. Should be {@link #HORIZONTAL} or {@link #VERTICAL}.
-   */
   public DividerItemDecoration(Context context, int orientation) {
     final TypedArray a = context.obtainStyledAttributes(ATTRS);
     mDivider = a.getDrawable(0);
@@ -58,12 +38,6 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
     setOrientation(orientation);
   }
 
-  /**
-   * Sets the orientation for this divider. This should be called if
-   * {@link RecyclerView.LayoutManager} changes orientation.
-   *
-   * @param orientation {@link #HORIZONTAL} or {@link #VERTICAL}
-   */
   public DividerItemDecoration setOrientation(int orientation) {
     if (orientation != HORIZONTAL && orientation != VERTICAL) {
       throw new IllegalArgumentException("Invalid orientation. It should be either HORIZONTAL or "
@@ -73,19 +47,11 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
     return this;
   }
 
-  /**
-   * @return the {@link Drawable} for this divider.
-   */
   @Nullable
   public Drawable getDrawable() {
     return mDivider;
   }
 
-  /**
-   * Sets the {@link Drawable} for this divider.
-   *
-   * @param drawable Drawable that should be used as a divider.
-   */
   public DividerItemDecoration setDrawable(@NonNull Drawable drawable) {
     if (drawable == null) {
       throw new IllegalArgumentException("Drawable cannot be null.");
@@ -94,24 +60,19 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
     return this;
   }
 
-  /**
-   * 跳过 headView 分割线
-   */
   public DividerItemDecoration setHeadViewId(int headViewId) {
     mHeadViewId = headViewId;
     return this;
   }
 
-  /**
-   * 跳过 footView 分割线
-   */
   public DividerItemDecoration setFootViewId(int footViewId) {
     mFootViewId = footViewId;
     return this;
   }
 
   @Override
-  public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
+  public void onDraw(@NonNull Canvas c, @NonNull RecyclerView parent,
+    @NonNull RecyclerView.State state) {
     if (parent.getLayoutManager() == null || mDivider == null) {
       return;
     }
@@ -119,6 +80,20 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
       drawVertical(c, parent);
     } else {
       drawHorizontal(c, parent);
+    }
+  }
+
+  @Override
+  public void getItemOffsets(@NonNull Rect outRect, @NonNull View view,
+    @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
+    if (mDivider == null) {
+      outRect.set(0, 0, 0, 0);
+      return;
+    }
+    if (mOrientation == VERTICAL) {
+      outRect.set(0, 0, 0, mDivider.getIntrinsicHeight());
+    } else {
+      outRect.set(0, 0, mDivider.getIntrinsicWidth(), 0);
     }
   }
 
@@ -182,19 +157,5 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
       mDivider.draw(canvas);
     }
     canvas.restore();
-  }
-
-  @Override
-  public void getItemOffsets(Rect outRect, View view, RecyclerView parent,
-    RecyclerView.State state) {
-    if (mDivider == null) {
-      outRect.set(0, 0, 0, 0);
-      return;
-    }
-    if (mOrientation == VERTICAL) {
-      outRect.set(0, 0, 0, mDivider.getIntrinsicHeight());
-    } else {
-      outRect.set(0, 0, mDivider.getIntrinsicWidth(), 0);
-    }
   }
 }

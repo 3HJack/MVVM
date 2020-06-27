@@ -9,8 +9,8 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.ConcatAdapter;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.MergeAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.hhh.mvvm.R;
@@ -39,7 +39,7 @@ public abstract class RecyclerFragment<MODEL, PARAMETER> extends BaseFragment im
   protected ViewGroup mEmptyContainerView;
   protected SmartRefreshLayout mRefreshLayout;
   protected RecyclerView mRecyclerView;
-  protected MergeAdapter mMergeAdapter;
+  protected ConcatAdapter mConcatAdapter;
   protected RecyclerPagedListAdapter<MODEL> mAdapter;
   protected RecyclerView.Adapter<? extends RecyclerView.ViewHolder> mHeadAdapter;
   protected RecyclerView.Adapter<? extends RecyclerView.ViewHolder> mFootAdapter;
@@ -163,7 +163,7 @@ public abstract class RecyclerFragment<MODEL, PARAMETER> extends BaseFragment im
 
   public boolean removeHeadAdapter() {
     if (mHeadAdapter != null) {
-      boolean value = mMergeAdapter.removeAdapter(mHeadAdapter);
+      boolean value = mConcatAdapter.removeAdapter(mHeadAdapter);
       mHeadAdapter = null;
       return value;
     }
@@ -171,12 +171,12 @@ public abstract class RecyclerFragment<MODEL, PARAMETER> extends BaseFragment im
   }
 
   public boolean existHeadAdapter() {
-    return mMergeAdapter.getAdapters().contains(mHeadAdapter);
+    return mConcatAdapter.getAdapters().contains(mHeadAdapter);
   }
 
   public boolean removeFootAdapter() {
     if (mFootAdapter != null) {
-      boolean value = mMergeAdapter.removeAdapter(mFootAdapter);
+      boolean value = mConcatAdapter.removeAdapter(mFootAdapter);
       mFootAdapter = null;
       return value;
     }
@@ -184,7 +184,7 @@ public abstract class RecyclerFragment<MODEL, PARAMETER> extends BaseFragment im
   }
 
   public boolean existFootAdapter() {
-    return mMergeAdapter.getAdapters().contains(mFootAdapter);
+    return mConcatAdapter.getAdapters().contains(mFootAdapter);
   }
 
   private void initRecycleView() {
@@ -203,7 +203,7 @@ public abstract class RecyclerFragment<MODEL, PARAMETER> extends BaseFragment im
     if ((mFootAdapter = onCreateFootAdapter()) != null) {
       adapterList.add(mFootAdapter);
     }
-    mRecyclerView.setAdapter(mMergeAdapter = new MergeAdapter(adapterList));
+    mRecyclerView.setAdapter(mConcatAdapter = new ConcatAdapter(adapterList));
     mViewModel = onCreateViewModel();
     mViewModel.getPagedListLiveData().observe(getViewLifecycleOwner(),
       models -> mAdapter.submitList(models));

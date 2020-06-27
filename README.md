@@ -6,7 +6,7 @@
 ## MVVM 的特点
 
 - [x] 引入[scwang90/SmartRefreshLayout](https://github.com/scwang90/SmartRefreshLayout)实现下拉刷新，和上拉加载
-- [x] 采用官方 MergeAdapter 实现HeadView
+- [x] 采用官方 ConcatAdapter 实现HeadView
 - [x] 采用官方 DataSource,PagedList,PagedAdapter分页加载框架，支持加载到倒数第X个item时自动加载下一页，天生支持DiffUtil，高性能
 - [x] 对Google 的 Jetpack 组件进行了封装，规范了用法，降低了开发者的使用门槛
 - [x] 整套方案，设计优雅，代码的可维护性，可扩展性，可读性都很强，可以帮助开发者设计出优雅且健壮的APP
@@ -27,7 +27,7 @@ allprojects {
 ```
 
 ```
-implementation 'com.hhh.onepiece:mvvm:1.1.2'
+implementation 'com.hhh.onepiece:mvvm:1.1.3'
 ```
 
 ## 实现原理
