@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Core.Widget.Footer.Loading" parent="@android:style/Widget.ProgressBar">
+        <item name="android:indeterminateDrawable">@drawable/footer_loading_animation</item>
+        <item name="android:minWidth">50dip</item>
+        <item name="android:maxWidth">50dip</item>
+        <item name="android:minHeight">50dip</item>
+        <item name="android:maxHeight">50dip</item>
+    </style>
+</resources>

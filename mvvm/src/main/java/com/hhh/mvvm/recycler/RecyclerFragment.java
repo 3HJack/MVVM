@@ -2,6 +2,7 @@ package com.hhh.mvvm.recycler;
 
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -132,6 +133,9 @@ public abstract class RecyclerFragment<MODEL, PARAMETER> extends BaseFragment im
     if (isPageEmpty()) {
       mViewModel.loadData(onCreateParameter());
     }
+    if (mHeadAdapter != null && mConcatAdapter.getAdapters().get(0) != mHeadAdapter) {
+      mConcatAdapter.addAdapter(0, mHeadAdapter);
+    }
   }
 
   @Override
@@ -197,7 +201,9 @@ public abstract class RecyclerFragment<MODEL, PARAMETER> extends BaseFragment im
     }
     List<RecyclerView.Adapter<? extends RecyclerView.ViewHolder>> adapterList = new ArrayList<>();
     if ((mHeadAdapter = onCreateHeadAdapter()) != null) {
-      adapterList.add(mHeadAdapter);
+      if (isCurrentFragment()) {
+        adapterList.add(mHeadAdapter);
+      }
     }
     adapterList.add(mAdapter = onCreateAdapter());
     if ((mFootAdapter = onCreateFootAdapter()) != null) {
