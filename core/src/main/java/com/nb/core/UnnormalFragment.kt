@@ -5,9 +5,9 @@ import android.view.View
 import androidx.core.view.isVisible
 import androidx.paging.LoadState
 
-open class UnusualFragment : BaseFragment() {
+open class UnnormalFragment : BaseFragment() {
 
-    override val layoutId = R.layout.unusual_layout
+    override val layoutId = R.layout.unnormal_layout
     protected lateinit var recyclerFragment: RecyclerFragment<*, *>
 
     open var loadState: LoadState = LoadState.NotLoading(false)

@@ -32,7 +32,7 @@ abstract class RecyclerFragment<MODEL : DiffCallback<MODEL>, PARAMETER> : BaseFr
     protected open fun onCreateLayoutManager(): RecyclerView.LayoutManager =
         LinearLayoutManager(requireContext())
 
-    protected open fun onCreateUnusualFragment() = UnusualFragment()
+    protected open fun onCreateUnnormalFragment() = UnnormalFragment()
 
     protected open fun getParameter(): PARAMETER? = null
 
@@ -103,7 +103,7 @@ abstract class RecyclerFragment<MODEL : DiffCallback<MODEL>, PARAMETER> : BaseFr
     }
 
     private fun initEmptyView(view: View) {
-        val unusualFragment = onCreateUnusualFragment()
+        val unusualFragment = onCreateUnnormalFragment()
         recyclerAdapter.addLoadStateListener { unusualFragment.loadState = it.refresh }
         childFragmentManager.beginTransaction()
             .replace(R.id.unusual_view, unusualFragment, unusualFragment.javaClass.name).commit()
